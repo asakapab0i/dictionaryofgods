@@ -1,0 +1,30 @@
+#This file is for url renames the purpose for this is the security in which the real
+#website will not be revealed.
+
+RewriteEngine On
+RewriteBase /dict/
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^define/([^/]*)/defid/([^/]*)$ define.php?term=$1&defid=$2
+RewriteRule ^define/([^/]*)$ define.php?term=$1
+RewriteRule ^dictionary/popular/([a-zA-Z])$ dictionary.php?letter=$1
+RewriteRule ^recent/date/([^/]*)$ recent.php?date=$1
+RewriteRule ^dictionary/browse/([a-zA-Z])$ browse.php?letter=$1
+RewriteRule ^author/([^/]*)$ author.php?name=$1
+RewriteRule ^add/undefined/([^/]*)$ add.php?term=$1
+RewriteRule ^tagged/([^/]*)$ tags.php?tagged=$1
+RewriteRule ^wordoftheday$ index.php
+RewriteRule ^wordoftheday/p/([^/]*)$ index.php?pn=$1
+
+
+
+
+RewriteRule ^([^\.]+)$ $1.php 
+
+
+
+
+

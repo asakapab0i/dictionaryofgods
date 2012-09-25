@@ -48,7 +48,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['password']) && isset($_SESS
 
             <div id="workspace" class="span-22 prepend-1 ">
                 <hr/>
-                <div id="nest" class="span-22 first center">
+                <div id="nest" class="span-22 first">
                     <?php displayReports(); ?>
                 </div>
             </div>

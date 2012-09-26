@@ -15,139 +15,52 @@ if ($_REQUEST['captcha'] == $_SESSION['cap_code']) {
     $name = trim($cleanData->stripAndEscape($_REQUEST['name']));
     $email = trim($cleanData->stripAndEscape($_REQUEST['email']));
 
+    $definition = strip_tags($definition);
+
 
 
 //check if there is already existing psuedoname
 
     $check = mysql_query("SELECT * FROM author WHERE name = '$name' AND email = '$email' ") or die(mysql_error());
-    $checkword = mysql_query("SELECT * FROM word WHERE word = '$word'") or die(mysql_error());
-
-// for author
-    $checkname = mysql_query("SELECT * FROM author WHERE name = '$name'");
-    $checkemail = mysql_query("SELECT * FROM author WHERE email = '$email'");
-
+//check if word already exist
+    //$checkword = mysql_query("SELECT * FROM word WHERE word = '$word'") or die(mysql_error());
+    $checkname = mysql_query("SELECT * FROM author WHERE name = '$name'") or die(mysql_error());
+    //$checkemail = mysql_query("SELECT * FROM author WHERE email = '$email'");
 
     if (mysql_num_rows($check) == 0) {
+//email and pseudoname is not correct
+//Verify the author Insert
 
-
-        // Insert the insertable
-        //Verify the author Insert
-        if (mysql_num_rows($checkname) > 0) {
-            exit("<p class='error'>Your psuedoname is already exist. Please choose another name.</p>");
-        } else
-        if (mysql_num_rows($checkemail) > 0) {
-            exit("<p class='error'>Your email is already exist. Please choose another email. </p>");
-        } else {
-            mysql_query("INSERT INTO author (name,email) VALUES ('$name','$email') ") or die(mysql_error());
-            $author_id = mysql_insert_id();
-        }
-
-        //process the tags
-        //insert the tags into tagmap
-        $myTags = explode(',', $tag);
-        $total = count($myTags);
-        $i = 0; // counter
-        while ($i != $total) {
-            //remove the whitespaces
-            $string = trim($myTags[$i]);
-
-            $query = mysql_query("SELECT * FROM tagmap WHERE tagname = '$string'") or die(mysql_error());
-
-            if (mysql_num_rows($query) == 1) {
-                mysql_query("UPDATE tagmap SET tag_counter = tag_counter+1 WHERE tagname = '$string'") or die(mysql_error());
-            } else if (mysql_num_rows($query) == 0) {
-                mysql_query("INSERT INTO tagmap (tagname,tag_counter) VALUES ('$string',1)") or die(mysql_error());
+        if (mysql_num_rows($checkname) == 1) {
+            while ($row2 = mysql_fetch_array($checkname)) {
+                $emailcheck = $row2['email'];
             }
-            $i++;
-        }
 
-        if (mysql_num_rows($checkword) > 0) {
-            while ($row = mysql_fetch_array($checkword)) {
-                $word_id = $row['id'];
+            if ($emailcheck != $email) {
+                exit('<p class="error">Your email is incorrect. Please try again.</p>');
+            } else {
+                $insert = mysql_query("INSERT INTO tempword (word,definition,example,tags,name,email,status,moderator,existinguser)
+        VALUES('$word','$definition','$example','$tag','$name','$email','Unapproved','Not yet','Yes')");
+                echo '<p class="success">Congratulations your word has been defined. <br/> Please wait for a few hours while moderators check your word. Thanks!</p>';
             }
-        } else {
-            mysql_query("INSERT INTO word (word) VALUES ('$word')") or die(mysql_error());
-            $word_id = mysql_insert_id();
+        }else if(mysql_num_rows($checkname) == 0){
+            //remind me to add here the firstimer authors into database
+             $insert = mysql_query("INSERT INTO tempword (word,definition,example,tags,name,email,status,moderator,existinguser)
+        VALUES('$word','$definition','$example','$tag','$name','$email','Unapproved','Not yet','No')");
+                echo '<p class="success">Congratulations your word has been defined. <br/> Please wait for a few hours while moderators check your word.<br/>We are also in the process of verifying your new psuedoname. Thanks!</p>';
         }
-
-
-        mysql_query("INSERT INTO vote (word_id) VALUES ('$word_id')") or die(mysql_error());
-        $vote_id = mysql_insert_id();
-
-        mysql_query("INSERT INTO example (example) VALUES ('$example')") or die(mysql_error());
-        $example_id = mysql_insert_id();
-
-        mysql_query("INSERT INTO definition (word_id,definition,example_id,vote_id) VALUES ('$word_id','$definition','$example_id','$vote_id')") or die(mysql_error());
-        $definition_id = mysql_insert_id();
-
-        mysql_query("INSERT INTO tag (definition_id,tag) VALUES ('$definition_id','$tag')") or die(mysql_error());
-        $tag_id = mysql_insert_id();
-
-        mysql_query("UPDATE definition SET tag_id = '$tag_id' WHERE id = '$definition_id'");
-
-        mysql_query("INSERT INTO wordmap (word_id,author_id,definition_id,date) VALUES ('$word_id','$author_id','$definition_id',now()) ") or die(mysql_error());
-
-
-        echo '<p class="success">Congratulations your word has been defined. <br/> Please wait for a few hours while moderators check your word. Thanks!</p>';
     } else if (mysql_num_rows($check) == 1) {
-
 // Check the email and name = SUCCESS
 
-        if (mysql_num_rows($check) == 1) {
-            while ($row = mysql_fetch_array($check)) {
-                $author_id = $row['id'];
-            }
+        $insert = mysql_query("INSERT INTO tempword (word,definition,example,tags,name,email,status,moderator,existinguser)
+        VALUES('$word','$definition','$example','$tag','$name','$email','Unapproved','Not yet','Yes')");
 
-            if (mysql_num_rows($checkword) > 0) {
-                while ($row = mysql_fetch_array($checkword)) {
-                    $word_id = $row['id'];
-                }
-            } else {
-                mysql_query("INSERT INTO word (word) VALUES ('$word')") or die(mysql_error());
-                $word_id = mysql_insert_id();
-            }
-
-
-            //process the tags
-            //insert the tags into tagmap
-            $myTags = explode(',', $tag);
-            $total = count($myTags);
-            $i = 0; // counter
-            while ($i != $total) {
-                $string = trim($myTags[$i]);
-                $query = mysql_query("SELECT * FROM tagmap WHERE tagname = '$string'") or die(mysql_error());
-
-                if (mysql_num_rows($query) == 1) {
-                    mysql_query("UPDATE tagmap SET tag_counter = tag_counter+1 WHERE tagname = '$string'") or die(mysql_error());
-                } else if (mysql_num_rows($query) == 0) {
-                    mysql_query("INSERT INTO tagmap (tagname,tag_counter) VALUES ('$string',1)") or die(mysql_error());
-                }
-                $i++;
-            }
-
-            mysql_query("INSERT INTO vote (word_id) VALUES ('$word_id')") or die(mysql_error());
-            $vote_id = mysql_insert_id();
-
-            mysql_query("INSERT INTO example (example) VALUES ('$example')") or die(mysql_error());
-            $example_id = mysql_insert_id();
-
-            mysql_query("INSERT INTO definition (word_id,definition,example_id,vote_id) VALUES ('$word_id','$definition','$example_id','$vote_id')") or die(mysql_error());
-            $definition_id = mysql_insert_id();
-
-            mysql_query("INSERT INTO tag (definition_id,tag) VALUES ('$definition_id','$tag')") or die(mysql_error());
-            $tag_id = mysql_insert_id();
-
-            mysql_query("UPDATE definition SET tag_id = '$tag_id' WHERE id = '$definition_id'");
-
-            mysql_query("INSERT INTO wordmap (word_id,author_id,definition_id,date) VALUES ('$word_id','$author_id','$definition_id',now()) ") or die(mysql_error());
-
-
-            echo '<p class="success">Congratulations your word has been defined. <br/> Please wait for a few hours while moderators check your word. Thanks!</p>';
-        }
+        echo '<p class="success">Congratulations your word has been defined. <br/> Please wait for a few hours while moderators check your word. Thanks!</p>';
     }
+
 // Captcha verification is Correct. Do something here!
 } else {
 // Captcha verification is wrong. Take other action
-    echo '<p class="error">Error Captcha</p>';
+    echo '<p class="error">Error captcha input.</p>';
 }
 ?>

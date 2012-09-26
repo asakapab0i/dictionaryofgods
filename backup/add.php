@@ -6,6 +6,8 @@ include '../db/connect.php';
 include '../library/dataCleansing.php';
 
 
+
+
 if ($_REQUEST['captcha'] == $_SESSION['cap_code']) {
 
     $word = trim($cleanData->stripAndEscape($_REQUEST['word']));

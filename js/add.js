@@ -77,7 +77,7 @@ $(function(){
             }
 
         }).success(function(data){
-            
+            alert(data);
             if(data == '<p class=\'error\'>Your psuedoname is already exist. Please choose another name.</p>'){
                 $('.error').remove();
                 $('#nest').prepend(data);
@@ -86,8 +86,14 @@ $(function(){
                 $('#nest').prepend(data);
             }else if(data == '<p class="success">Congratulations your word has been defined. <br/> Please wait for a few hours while moderators check your word. Thanks!</p>'){
                 $('#nest').html(data);
-            }else if(data == '<p class="error">Error Captcha</p>'){
-                alert(captcha);
+            }else if(data == '<p class="error">Error captcha input.</p>'){
+                //alert(captcha);
+                $('.error').remove();
+                $('#nest').prepend(data);
+            }else if(data == '<p class="error">Your email is incorrect. Please try again.</p>'){
+                $('.error').remove();
+                $('#nest').prepend(data);
+            }else if(data == '<p class="success">Congratulations your word has been defined. <br/> Please wait for a few hours while moderators check your word.<br/>We are also in the process of verifying your new psuedoname. Thanks!</p>'){
                 $('#nest').html(data);
             }
         });

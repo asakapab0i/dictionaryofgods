@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'include/global_include.php';
 include 'include/db/connect.php';
 include 'include/library/dataCleansing.php';
@@ -84,6 +85,12 @@ include 'include/library/pageTitles.php';
                             <tr>
                                 <td><label for="email">Email</label></td>
                                 <td><input id="email" type="email" size="60" ></td>
+                            </tr>
+                            <tr>
+                                <td><label>Captcha: </label> </td>
+                                <td><input type="text" name="captcha" id="captcha" />
+                                    <img class="menuImages" src='http://localhost/dict/include/ajax/captcha.php' /></td>
+
                             </tr>
                             <tr>
                                 <td></td>

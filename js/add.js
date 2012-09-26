@@ -49,6 +49,7 @@ $(function(){
         var tag1 = $('#tag').val();
         var name1 = $('#name').val();
         var email1 = $('#email').val();
+        var captcha1 = $('#captcha').val();
         
         var word = $.trim(word1);
         var definition = $.trim(definition1);
@@ -56,6 +57,7 @@ $(function(){
         var tag = $.trim(tag1);
         var name = $.trim(name1);
         var email = $.trim(email1);
+        var captcha = $.trim(captcha1);
         
      
         $(this).validateForm(word,definition,example,tag,name,email);
@@ -64,22 +66,28 @@ $(function(){
             type:'POST',
             url:'http://localhost/dict/include/ajax/add.php',
             data:{
+                captcha:captcha,
                 word:word,
                 definition:definition,
                 example:example,
                 tag:tag,
                 name:name,
                 email:email
+                
             }
 
         }).success(function(data){
+            
             if(data == '<p class=\'error\'>Your psuedoname is already exist. Please choose another name.</p>'){
                 $('.error').remove();
                 $('#nest').prepend(data);
             }else if(data == '<p class=\'error\'>Your email is already exist. Please choose another email. </p>'){
                 $('.error').remove();
                 $('#nest').prepend(data);
-            }else if(data == '<p class=\'success\'>Congratulations your word has been defined. <br/> Please wait for a few hours while moderators check your word. Thanks!</p>'){
+            }else if(data == '<p class="success">Congratulations your word has been defined. <br/> Please wait for a few hours while moderators check your word. Thanks!</p>'){
+                $('#nest').html(data);
+            }else if(data == '<p class="error">Error Captcha</p>'){
+                alert(captcha);
                 $('#nest').html(data);
             }
         });

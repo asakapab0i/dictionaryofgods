@@ -39,6 +39,7 @@ function displayReports() {
             echo '<p>Date added: ' . $row['datew'] . '</span></p>';
             echo '<p>Definition: ' . $row['definition'] . '</p>';
             echo '<p>Example: ' . $row['example'] . '</p>';
+            echo '<p>Tags: ' . $row['tag'] . '</p>';
             echo '<p>Author: ' . $row['name'] . '</p>';
             echo '<div>';
             
@@ -50,6 +51,7 @@ function displayReports() {
             echo '<p>Report Type: ' . $row2['type'] . '</p>';
             echo '<p>Status: ' . $row2['status'] . '</p>';
             echo '<p>Date Reported: ' . $row2['datew'] . '</p>';
+            echo '<p>Details: '.$row2['description'].'</p>';
             echo '<p>Moderator: ' . $row2['moderator'] . '</p>';
             echo '<p>Link: <a href="'.$row2['link'].'" target="_new">' . $row2['link'] . '</a></p>';
             echo '<h2>Actions</h2>';

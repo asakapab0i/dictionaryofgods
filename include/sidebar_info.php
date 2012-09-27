@@ -1,6 +1,6 @@
 <?php
 
-include 'db/connect.php';
+//include 'db/connect.php';
 
 function sideBarInfoDefine() {
 

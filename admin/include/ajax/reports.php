@@ -48,6 +48,7 @@ function displayReports() {
             echo '<p>Details: ' . $row2['description'] . '</p>';
             echo '<p>Moderator: ' . $row2['moderator'] . '</p>';
             echo '<p>Link: <a href="' . $row2['link'] . '" target="_new">' . $row2['link'] . '</a></p>';
+            echo '<hr>';
             echo '<h2>Word Action</h2>';
             wordActionMenu();
             echo '<h2>Status: ' . $row2['word_status'] . '</h2>';

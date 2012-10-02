@@ -13,7 +13,7 @@ if (isset($_REQUEST['form'])) {
         $wordmapid = $cleanData->stripAndEscape($_REQUEST['defid']);
         $link = $cleanData->stripAndEscape($_REQUEST['link']);
 
-        $insertreport = mysql_query("INSERT INTO report(wordmap_id,type,description,status,email,date,moderator,link) VALUES ('$wordmapid','$type','$detail','Open','$email',now(),'None','$link')");
+        $insertreport = mysql_query("INSERT INTO report(wordmap_id,type,description,status,email,date,moderator,link,word_status) VALUES ('$wordmapid','$type','$detail','Open','$email',now(),'None','$link','N/A')");
 
         if ($insertreport) {
             echo 'successfully sent';

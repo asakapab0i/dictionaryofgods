@@ -128,9 +128,9 @@ function definition() {
             echo '<p>Looks like the word your looking for is not yet defined.</p>';
             echo '<a href="http://localhost/dict/add/undefined/' . rawurlencode($term) . '" class="buttonSmall active">Define it here</a>';
         }
-    } else if (isset($_REQUEST['permaterm']) && isset($_REQUEST['permadefid'])) {
+    } else if (isset($_REQUEST['term']) && isset($_REQUEST['permadefid'])) {
         //include_once 'include/library/dataCleansing.php';
-        $permaterm = $cleanData->stripAndEscape($_REQUEST['permaterm']);
+        $term = $cleanData->stripAndEscape($_REQUEST['term']);
         $permadefid = $cleanData->stripAndEscape($_REQUEST['permadefid']);
 
         $sql = mysql_query("SELECT word.word,
@@ -155,7 +155,7 @@ function definition() {
                                         INNER JOIN example ON definition.example_id = example.id
                                         INNER JOIN vote ON definition.vote_id = vote.id
                                         INNER JOIN tag ON definition.tag_id = tag.id
-                                        WHERE word.word = '$permaterm' AND definition.id = '$permadefid'") or die(mysql_error());
+                                        WHERE word.word = '$term' AND definition.id = '$permadefid'") or die(mysql_error());
         while ($row = mysql_fetch_array($sql)) {
             $name = $row['name'];
             $tags = $row['tag'];

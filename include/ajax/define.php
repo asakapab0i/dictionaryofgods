@@ -152,14 +152,15 @@ function definition() {
                                         FROM wordmap
                                         INNER JOIN word ON wordmap.word_id = word.id
                                         INNER JOIN author ON wordmap.author_id = author.id
-                                        INNER JOIN definition ON wordmap.definition_id = '$permadefid'
+                                        INNER JOIN definition ON wordmap.definition_id = definition.id
                                         INNER JOIN example ON definition.example_id = example.id
                                         INNER JOIN vote ON definition.vote_id = vote.id
                                         INNER JOIN tag ON definition.tag_id = tag.id
-                                        WHERE word.word = '$permaterm' ORDER BY CASE defid
-                                        ") or die(mysql_error());
+                                        WHERE word.word = '$permaterm' AND definition.id = '$permadefid'") or die(mysql_error());
         while ($row = mysql_fetch_array($sql)) {
-
+            $name = $row['name'];
+            $tags = $row['tag'];
+            
             echo '<div class="span-13">';
             echo '<div id="votes' . $row['id'] . '" class="floatright">';
             echo '<p><span id="upNum' . $row['defid'] . '">' . $row['up'] . '</span><img src="http://localhost/dict/images/up.png" class="imageup" id="' . $row['defid'] . '" />';

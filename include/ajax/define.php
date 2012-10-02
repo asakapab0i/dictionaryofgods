@@ -60,7 +60,7 @@ function definition() {
                 echo ' <span class="share-style"><a href="#" class="share" id="' . $row['wordmapid'] . '">share this!</a></span>';
                 echo ' <span class="discuss-style" id="discuss">discuss this!</span>';
                 echo '<span class="floatright report-style "><a href="#" class="report" id="' . $row['wordmapid'] . '">report this!</a></span></p>';
-                reportForm($row['wordmapid'], full_url());
+                reportForm($row['wordmapid'], $row['defid'], full_url(), $row['word']);
                 shareForm($row['wordmapid']);
                 echo '</div>';
                 echo '<hr/>';
@@ -119,7 +119,7 @@ function definition() {
                 echo ' <span class="share-style"><a href="#" class="share" id="' . $row['wordmapid'] . '">share this!</a></span>';
                 echo ' <span class="discuss-style" id="discuss">discuss this!</span>';
                 echo '<span class="floatright report-style "><a href="#" class="report" id="' . $row['wordmapid'] . '">report this!</a></span></p>';
-                reportForm($row['wordmapid'], full_url());
+                reportForm($row['wordmapid'], $row['defid'], full_url(), $row['word']);
                 shareForm($row['wordmapid']);
                 echo '</div>';
                 echo '<hr/>';
@@ -129,7 +129,6 @@ function definition() {
             echo '<a href="http://localhost/dict/add/undefined/' . rawurlencode($term) . '" class="buttonSmall active">Define it here</a>';
         }
     } else if (isset($_REQUEST['permaterm']) && isset($_REQUEST['permadefid'])) {
-        echo 'helo world';
         //include_once 'include/library/dataCleansing.php';
         $permaterm = $cleanData->stripAndEscape($_REQUEST['permaterm']);
         $permadefid = $cleanData->stripAndEscape($_REQUEST['permadefid']);
@@ -160,7 +159,7 @@ function definition() {
         while ($row = mysql_fetch_array($sql)) {
             $name = $row['name'];
             $tags = $row['tag'];
-            
+
             echo '<div class="span-13">';
             echo '<div id="votes' . $row['id'] . '" class="floatright">';
             echo '<p><span id="upNum' . $row['defid'] . '">' . $row['up'] . '</span><img src="http://localhost/dict/images/up.png" class="imageup" id="' . $row['defid'] . '" />';
@@ -177,7 +176,7 @@ function definition() {
             echo ' <span class="share-style"><a href="#" class="share" id="' . $row['wordmapid'] . '">share this!</a></span>';
             echo ' <span class="discuss-style" id="discuss">discuss this!</span>';
             echo '<span class="floatright report-style "><a href="#" class="report" id="' . $row['wordmapid'] . '">report this!</a></span></p>';
-            reportForm($row['wordmapid'], full_url());
+            reportForm($row['wordmapid'], $row['defid'], full_url(), $row['word']);
             shareForm($row['wordmapid']);
             echo '</div>';
         }
@@ -186,11 +185,18 @@ function definition() {
     }
 }
 
-function reportForm($data, $url) {
+function reportForm($data, $defid, $url, $word) {
+    /*
+      if (stristr($url, 'defid') == FALSE) {
+      $url = $url . '/defid/' . $data . '';
+      echo $url;
+      }
+     * 
+     */
+    //echo $url . '/dict/define.php?permaterm=' . $word . '&permaid=' . $defid . '';
+    $url = $url . '/dict/permalink/' . $word . '/' . $defid . '';
 
-    if (stristr($url, 'defid') == FALSE) {
-        $url = $url . '/defid/' . $data . '';
-    }
+
     echo '<div id="reportform">';
     echo '<form id="reportword' . $data . '" style="display:none">';
     echo '<h2>Report Form</h2>';
@@ -265,8 +271,8 @@ function displayTags($tags) {
 function full_url() {
     $s = empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on") ? "s" : "";
     $protocol = substr(strtolower($_SERVER["SERVER_PROTOCOL"]), 0, strpos(strtolower($_SERVER["SERVER_PROTOCOL"]), "/")) . $s;
-    $port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":" . $_SERVER["SERVER_PORT"]);
-    return $protocol . "://" . $_SERVER['SERVER_NAME'] . $port . $_SERVER['REQUEST_URI'];
+    //$port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":" . $_SERVER["SERVER_PORT"]);
+    return $protocol . "://" . $_SERVER['SERVER_NAME'];
 }
 
 ?>

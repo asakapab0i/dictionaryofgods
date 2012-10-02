@@ -18,6 +18,7 @@ RewriteRule ^add/undefined/([^/]*)$ add.php?term=$1
 RewriteRule ^tagged/([^/]*)$ tags.php?tagged=$1
 RewriteRule ^wordoftheday$ index.php
 RewriteRule ^wordoftheday/p/([^/]*)$ index.php?pn=$1
+RewriteRule ^permalink/([^/]*)/([^/]*)$ define.php?permaterm=$1&permadefid=$2
 
 
 

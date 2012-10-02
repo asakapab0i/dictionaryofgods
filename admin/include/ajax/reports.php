@@ -9,6 +9,7 @@ function displayReports() {
         $idx = $_REQUEST['wid'];
         $idy = $_REQUEST['rid'];
 
+        //wordmap query
         $querydata = mysql_query("SELECT wordmap.id,
         definition.definition,
         wordmap.date,
@@ -29,34 +30,29 @@ function displayReports() {
         WHERE wordmap.id = '$idx'") or die(mysql_error());
 
 
+        //report table query
+        $report_query = mysql_query("SELECT *,
+                DATE_FORMAT(date, '%d %W %M %Y') 
+                AS datew FROM report 
+                WHERE id = '$idy' ") or die(mysql_error());
 
 
-        while ($row = mysql_fetch_array($querydata)) {
-
-            echo '<div id="reportdetails" class="word-style">';
-            echo '<h2>Word Details</h2>';
-            echo '<p>Word: ' . $row['word'] . '</p>';
-            echo '<p>Date added: ' . $row['datew'] . '</span></p>';
-            echo '<p>Definition: ' . $row['definition'] . '</p>';
-            echo '<p>Example: ' . $row['example'] . '</p>';
-            echo '<p>Tags: ' . $row['tag'] . '</p>';
-            echo '<p>Author: ' . $row['name'] . '</p>';
-            echo '<div>';
-            
-            
-        }
-        $report_query = mysql_query("SELECT *,DATE_FORMAT(date, '%d %W %M %Y') AS datew FROM report WHERE id = '$idy' ") or die(mysql_error());
-        echo '<h2>Report Details</h2>';
+        echo '<div id="reportdetails" class="word-style">';
+        echo '<h2 id="' . $idy . '">Report Details ';
+        reportActionMenu();
+        echo '</h2>';
         while ($row2 = mysql_fetch_array($report_query)) {
             echo '<p>Report Type: ' . $row2['type'] . '</p>';
             echo '<p>Status: ' . $row2['status'] . '</p>';
             echo '<p>Date Reported: ' . $row2['datew'] . '</p>';
-            echo '<p>Details: '.$row2['description'].'</p>';
+            echo '<p>Details: ' . $row2['description'] . '</p>';
             echo '<p>Moderator: ' . $row2['moderator'] . '</p>';
-            echo '<p>Link: <a href="'.$row2['link'].'" target="_new">' . $row2['link'] . '</a></p>';
-            echo '<h2>Actions</h2>';
-            echo 'DELETE | EDIT | CLOSE | OPEN | ON HOLD';
+            echo '<p>Link: <a href="' . $row2['link'] . '" target="_new">' . $row2['link'] . '</a></p>';
+            echo '<h2>Word Action</h2>';
+            wordActionMenu();
+            echo '<h2>Status: ' . $row2['word_status'] . '</h2>';
         }
+        echo '</div>';
     } else {
 
 
@@ -91,6 +87,18 @@ function displayReports() {
     }
 
     echo '</table>';
+}
+
+function wordActionMenu() {
+    echo '<a id="edit" href="" class="buttonAction">Edit</a>
+        <a id="delete" href="" class="buttonAction">Delete</a><br/>';
+}
+
+function reportActionMenu() {
+    echo '<a id="close" href="" class="buttonAction">Close</a>
+        <a id="open" href="" class="buttonAction">Open</a>
+        <a id="onhold" href="" class="buttonAction">On Hold</a>
+        </a><br/>';
 }
 
 ?>

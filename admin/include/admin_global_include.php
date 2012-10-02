@@ -12,7 +12,7 @@ function adminHeader() {
                 <tr>
                     <td>
                     <div id="mainLogo" class="center">
-                    <img src="http://localhost/dict/images/logo.png" width="450px" height="100px"/>
+                    <img src="http://localhost/dict/images/piste.png" width="450px" height="100px"/>
                     </div>
                     </td>
                     <td class="center">';

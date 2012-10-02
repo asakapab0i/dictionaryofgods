@@ -66,7 +66,7 @@ function definition() {
                 echo '<hr/>';
             }
         }
-    } elseif (isset($_REQUEST['term'])) {
+    } else if (isset($_REQUEST['term'])) {
         $term = $cleanData->stripAndEscape($_REQUEST['term']);
 
         $sql = mysql_query("SELECT word.word,
@@ -127,6 +127,58 @@ function definition() {
         } else {
             echo '<p>Looks like the word your looking for is not yet defined.</p>';
             echo '<a href="http://localhost/dict/add/undefined/' . rawurlencode($term) . '" class="buttonSmall active">Define it here</a>';
+        }
+    } else if (isset($_REQUEST['permaterm']) && isset($_REQUEST['permadefid'])) {
+        echo 'helo world';
+        //include_once 'include/library/dataCleansing.php';
+        $permaterm = $cleanData->stripAndEscape($_REQUEST['permaterm']);
+        $permadefid = $cleanData->stripAndEscape($_REQUEST['permadefid']);
+
+        $sql = mysql_query("SELECT word.word,
+                                        word.id,
+                                        example.example,
+                                        author.name,
+                                        definition.word_id,
+                                        definition.example_id,
+                                        definition.definition,
+                                        definition.id AS defid,
+                                        vote.up,
+                                        vote.down,
+                                        vote.word_id,
+                                        author.name,
+                                        tag.tag,
+                                        wordmap.id AS wordmapid,
+                                        author.email
+                                        FROM wordmap
+                                        INNER JOIN word ON wordmap.word_id = word.id
+                                        INNER JOIN author ON wordmap.author_id = author.id
+                                        INNER JOIN definition ON wordmap.definition_id = '$permadefid'
+                                        INNER JOIN example ON definition.example_id = example.id
+                                        INNER JOIN vote ON definition.vote_id = vote.id
+                                        INNER JOIN tag ON definition.tag_id = tag.id
+                                        WHERE word.word = '$permaterm' ORDER BY CASE defid
+                                        ") or die(mysql_error());
+        while ($row = mysql_fetch_array($sql)) {
+
+            echo '<div class="span-13">';
+            echo '<div id="votes' . $row['id'] . '" class="floatright">';
+            echo '<p><span id="upNum' . $row['defid'] . '">' . $row['up'] . '</span><img src="http://localhost/dict/images/up.png" class="imageup" id="' . $row['defid'] . '" />';
+            echo '<span id="downNum' . $row['defid'] . '">' . $row['down'] . ' </span><img src="http://localhost/dict/images/down.png" class="imagedown" id="' . $row['defid'] . '"/>';
+            echo '</p></div>';
+            echo '<h3>' . $row['word'] . '</h3> ';
+            echo '<span class="definition-style"><p>' . $row['definition'] . '</p></span>';
+            echo '<span class="example-style"><p>' . '"' . $row['example'] . '"' . '</p></span>';
+            echo '<p>';
+            //display tags
+            displayTags($tags);
+            echo '</p>';
+            echo '<p>by: <span class="author-style"><a href="http://localhost/dict/author/' . rawurlencode($name) . '">' . $row['name'] . '</a></span>';
+            echo ' <span class="share-style"><a href="#" class="share" id="' . $row['wordmapid'] . '">share this!</a></span>';
+            echo ' <span class="discuss-style" id="discuss">discuss this!</span>';
+            echo '<span class="floatright report-style "><a href="#" class="report" id="' . $row['wordmapid'] . '">report this!</a></span></p>';
+            reportForm($row['wordmapid'], full_url());
+            shareForm($row['wordmapid']);
+            echo '</div>';
         }
     } else {
         header('location: http://localhost/dict/');

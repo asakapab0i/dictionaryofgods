@@ -81,14 +81,14 @@ $(function(){
     $('.buttonAction').click(function(){
         
         var reportid = $.getURLParam("rid");
-        var wordid = $.getURLParam("wid");
+        var wordmapid = $.getURLParam("wid");
         var id = $(this).attr('id');
         // alert(id);
            
         if(id=='delete'){
-            deleteWord(wordid);
+            deleteWord(wordmapid, reportid);
         }else if(id == 'edit'){
-            editWord(wordid);
+            editWord(wordmapid);
         }else if(id=='close'){
             closeReport(reportid);
         }else if(id=='open'){
@@ -102,11 +102,37 @@ $(function(){
 
 });
 
-function deleteWord(wordid){
+function deleteWord(wordmapid, reportid){
     //delete the word ajax calling
+    if(confirm('Are you sure you want to delete this word?')){
+        //this.preventDefault();
+        //alert(wordmapid);
+        //alert(reportid);
+    
+        var method = 'delete';
+        $.ajax({
+            type : 'POST',
+            url : 'http://localhost/dict/admin/include/ajax/reportCRUD.php',
+            data : {
+                wordmapid:wordmapid,
+                method: method,
+                reportid:reportid
+            }
+        }).success(function(data){
+            if(data == 'successfully deleted'){
+                $('#status').remove();
+                $('#statbox').html('<p class=error>Word has been deleted!</p>');
+            }else if(data == 'hello world!'){
+                alert(data);
+            }
+            else{
+                alert(data);
+                alert('Word already deleted!');
+            }
+        });
+        
+    }
    
-    alert(wordid);
-    this.preventDefault();
 }
 function editWord(){
     alert('hello world');
@@ -121,3 +147,5 @@ function onholdReport(){
     alert('hello world');
 }
 //$('a[hreflang|="en"]').css('border','3px dotted green');
+
+

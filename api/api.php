@@ -78,7 +78,7 @@ function getRandomWord() {
 
     $rows = json_encode($rows);
 
-    echo $_GET['callBack'] . '(' . $rows . ')';
+    echo $_GET['getEstoryahe'] . '(' . $rows . ')';
 }
 
 ?>

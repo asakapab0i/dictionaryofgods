@@ -51,7 +51,9 @@ function displayReports() {
             echo '<hr>';
             echo '<h2>Word Action</h2>';
             wordActionMenu();
-            echo '<h2>Status: ' . $row2['word_status'] . '</h2>';
+            echo '<br/><div id=statbox>';
+            echo '<h2 id="status">Status: ' . $row2['word_status'] . '</h2>';
+            echo '</div>';
         }
         echo '</div>';
     } else {
@@ -91,8 +93,8 @@ function displayReports() {
 }
 
 function wordActionMenu() {
-    echo '<a id="edit" href="" class="buttonAction">Edit</a>
-        <a id="delete" href="" class="buttonAction">Delete</a><br/>';
+    echo '<a id="edit" href="#" class="buttonAction">Edit</a>
+        <a id="delete" href="#" class="buttonAction">Delete</a><br/>';
 }
 
 function reportActionMenu() {

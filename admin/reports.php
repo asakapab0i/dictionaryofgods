@@ -50,6 +50,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['password']) && isset($_SESS
                 <hr/>
                 <div id="nest" class="span-22 first">
                     <?php displayReports(); ?>
+                    
                 </div>
             </div>
 

@@ -28,12 +28,22 @@ if (isset($_REQUEST['reportid']) && isset($_REQUEST['wordmapid']) && isset($_REQ
         }
 
         //deletion begins
-        //mysql_query("DELETE FROM word WHERE id = '$wordid'") or die(mysql_error());
+        //delete the word if its definition is only one.
+        $deleteword = mysql_query("SELECT * FROM definition WHERE word_id = '$wordid'") or die(mysql_error());
+        //check if the definition is only equal to one.
+        if (mysql_num_rows($deleteword) == 1) {
+            mysql_query("DELETE FROM word WHERE id = '$wordid'") or die(mysql_error());
+        }
+
         mysql_query("DELETE FROM example WHERE id = '$exampleid'") or die(mysql_error);
         mysql_query("DELETE FROM vote WHERE id = '$voteid'") or die(mysql_error);
         mysql_query("DELETE FROM tag WHERE id = '$tagid'") or die(mysql_error);
         mysql_query("DELETE FROM definition WHERE id = '$defid'") or die(mysql_error());
         mysql_query("DELETE FROM wordmap WHERE id = '$wordmapid'") or die(mysql_error());
+
+
+
+
         //update begins
         mysql_query("UPDATE author SET written_article = (written_article - 1) 
                 WHERE id = '$authorid'") or die(mysql_error());

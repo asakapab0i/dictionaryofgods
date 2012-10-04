@@ -129,7 +129,7 @@ function displayReports() {
 
 
 
-        echo '<h2>Reports</h2>';
+        echo '<h2>Pending Reports</h2>';
 
         echo '<table style="border:1px solid black;" class="floatright">';
         echo '<th scope="col">Ticket No</th>';

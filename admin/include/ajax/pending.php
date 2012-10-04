@@ -10,6 +10,7 @@ function displayPending() {
         $sql = mysql_query("SELECT * FROM tempword WHERE id = '$wordid'");
         while ($row = mysql_fetch_array($sql)) {
             echo '<div class="details word-style">';
+            goBack();
             echo '<h2>Word Detail';
             wordActionMenu();
             echo '</h2>';
@@ -117,6 +118,10 @@ function displayPending() {
 
 function wordActionMenu() {
     echo '      <a href="#" id="do" class=buttonAction>Approve this!</a> <a href="#" id="dont" class=buttonAction>Don\'t Approve!</a> ';
+}
+
+function goBack() {
+    echo '<a href="#" class="buttonAction" id="back">Go back</a>';
 }
 
 ?>

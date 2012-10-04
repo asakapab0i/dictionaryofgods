@@ -26,3 +26,11 @@ function clicked(_rowx,_rowy){
     document.location.href=("http://localhost/dict/admin/pending.php?pending="+x);
 
 }
+
+$(function(){
+    
+    $('#back').click(function(e){
+        e.preventDefault();
+        window.history.back();
+    })
+});

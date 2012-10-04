@@ -149,3 +149,12 @@ function onholdReport(){
 //$('a[hreflang|="en"]').css('border','3px dotted green');
 
 
+//BACK HISTORY
+
+$(function(){
+    
+    $('#back').click(function(e){
+        e.preventDefault();
+        window.history.back();
+    })
+});

@@ -38,6 +38,7 @@ function displayReports() {
 
 
         echo '<div id="reportdetails" class="word-style">';
+        goBack();
         echo '<h2 id="' . $idy . '">Report Details ';
         reportActionMenu();
         echo '</h2>';
@@ -59,8 +60,74 @@ function displayReports() {
     } else {
 
 
-        //mysql query
+
+
+        //mysql query on report
         $report_query = mysql_query("SELECT *,DATE_FORMAT(date, '%d %W %M %Y') AS datew FROM report") or die(mysql_error());
+
+        $nr = mysql_num_rows($report_query);
+        if (isset($_GET['pn'])) {
+            $pn = (int) $_GET['pn'];
+        } else {
+            $pn = 1;
+        }
+        $itemsPerPage = 10;
+        $lastPage = ceil($nr / $itemsPerPage);
+
+        if ($pn < 1) {
+            $pn = 1;
+        } elseif ($pn > $lastPage) {
+            $pn = $lastPage;
+        }
+
+        $centerPages = "";
+        $sub1 = $pn - 1;
+        $sub2 = $pn - 2;
+        $add1 = $pn + 1;
+        $add2 = $pn + 2;
+        if ($pn == 1) {
+            $centerPages .= '&nbsp; <span class="pagNumActive">' . $pn . '</span> &nbsp;';
+            $centerPages .= '&nbsp; <a href="http://localhost/dict/admin/reports.php?pn=' . $add1 . '">' . $add1 . '</a> &nbsp;';
+        } else if ($pn == $lastPage) {
+            $centerPages .= '&nbsp; <a href="http://localhost/dict/admin/reports.php?pn=' . $sub1 . '">' . $sub1 . '</a> &nbsp;';
+            $centerPages .= '&nbsp; <span class="pagNumActive">' . $pn . '</span> &nbsp;';
+        } else if ($pn > 2 && $pn < ($lastPage - 1)) {
+            $centerPages .= '&nbsp; <a href="http://localhost/dict/admin/reports.php?pn=' . $sub2 . '">' . $sub2 . '</a> &nbsp;';
+            $centerPages .= '&nbsp; <a href="http://localhost/dict/admin/reports.php?pn=' . $sub1 . '">' . $sub1 . '</a> &nbsp;';
+            $centerPages .= '&nbsp; <span class="pagNumActive">' . $pn . '</span> &nbsp;';
+            $centerPages .= '&nbsp; <a href="http://localhost/dict/admin/reports.php?pn=' . $add1 . '">' . $add1 . '</a> &nbsp;';
+            $centerPages .= '&nbsp; <a href="http://localhost/dict/admin/reports.php?pn=' . $add2 . '">' . $add2 . '</a> &nbsp;';
+        } else if ($pn > 1 && $pn < $lastPage) {
+            $centerPages .= '&nbsp; <a href="http://localhost/dict/admin/reports.php?pn=' . $sub1 . '">' . $sub1 . '</a> &nbsp;';
+            $centerPages .= '&nbsp; <span class="pagNumActive">' . $pn . '</span> &nbsp;';
+            $centerPages .= '&nbsp; <a href="http://localhost/dict/admin/reports.php?pn=' . $add1 . '">' . $add1 . '</a> &nbsp;';
+        }
+        $limit = 'LIMIT ' . ($pn - 1) * $itemsPerPage . ',' . $itemsPerPage;
+
+        $report_query2 = mysql_query('SELECT *,DATE_FORMAT(date, "%d %W %M %Y") AS datew FROM report ORDER BY date DESC ' . $limit . ' ') or die(mysql_error());
+
+        $paginationDisplay = "";
+
+        if ($lastPage != "1") {
+            // This shows the user what page they are on, and the total number of pages
+            $paginationDisplay .= 'Page <strong>' . $pn . '</strong> of ' . $lastPage . '&nbsp;  &nbsp;  &nbsp; ';
+            $paginationDisplay .= '&nbsp;  <a href="http://localhost/dict/wordoftheday/p/1">First</a> ';
+            // If we are not on page 1 we can place the Back button
+            if ($pn != 1) {
+                $previous = $pn - 1;
+                $paginationDisplay .= '&nbsp;  <a href="http://localhost/dict/admin/reports.php?pn=' . $previous . '"> Back</a> ';
+            }
+            // Lay in the clickable numbers display here between the Back and Next links
+            $paginationDisplay .= '<span class="paginationNumbers">' . $centerPages . '</span>';
+            // If we are not on the very last page we can place the Next button
+            if ($pn != $lastPage) {
+                $nextPage = $pn + 1;
+                $paginationDisplay .= '&nbsp;  <a href="http://localhost/dict/admin/reports.php?pn=' . $nextPage . '"> Next</a>';
+                $paginationDisplay .= '&nbsp;  <a href="http://localhost/dict/admin/reports.php?pn=' . $lastPage . '">Last</a> ';
+            }
+        }
+
+
 
         echo '<h2>Reports</h2>';
 
@@ -72,7 +139,7 @@ function displayReports() {
         echo '<th scope="col">Moderator</th>';
 
         $count = 0;
-        while ($row = mysql_fetch_array($report_query)) {
+        while ($row = mysql_fetch_array($report_query2)) {
             echo "<tr  
                     id='row" . $count . "' 
                     onmouseover='over(" . $count . ")' 
@@ -87,9 +154,9 @@ function displayReports() {
             echo '</tr>';
             $count++;
         }
+        echo '</table>';
+        echo '<span class="floatright">' . $paginationDisplay . '</span>';
     }
-
-    echo '</table>';
 }
 
 function wordActionMenu() {
@@ -102,6 +169,10 @@ function reportActionMenu() {
         <a id="open" href="" class="buttonAction">Open</a>
         <a id="onhold" href="" class="buttonAction">On Hold</a>
         </a><br/>';
+}
+
+function goBack() {
+    echo '<a href="#" class="buttonAction" id="back">Go back</a>';
 }
 
 ?>

@@ -39,26 +39,26 @@ if ($_REQUEST['captcha'] == $_SESSION['cap_code']) {
             if ($emailcheck != $email) {
                 exit('<p class="error">Your email is incorrect. Please try again.</p>');
             } else {
-                $insert = mysql_query("INSERT INTO tempword (word,definition,example,tags,name,email,status,moderator,existinguser)
-        VALUES('$word','$definition','$example','$tag','$name','$email','Unapproved','Not yet','Yes')");
+                $insert = mysql_query("INSERT INTO tempword (word,definition,example,tags,name,email,status,moderator,existinguser,date)
+        VALUES('$word','$definition','$example','$tag','$name','$email','Unapproved','Not yet','Yes',now())");
                 echo '<p class="success">Congratulations your word has been defined. <br/> Please wait for a few hours while moderators check your word. Thanks!</p>';
             }
-        }else{
+        } else {
             //remind me to add here the firstimer authors into database
-            if(mysql_num_rows($checkemail) == 0){
-                mysql_query("INSERT INTO author (name,email)VALUES('$name','$email')")or die(mysql_error());
-            }else if(mysql_num_rows ($checkemail)==1){
+            if (mysql_num_rows($checkemail) == 0) {
+                mysql_query("INSERT INTO author (name,email)VALUES('$name','$email')") or die(mysql_error());
+            } else if (mysql_num_rows($checkemail) == 1) {
                 exit("<p class=\'error\'>Your email is already exist. Please choose another email. </p>");
             }
-            $insert = mysql_query("INSERT INTO tempword (word,definition,example,tags,name,email,status,moderator,existinguser)
-        VALUES('$word','$definition','$example','$tag','$name','$email','Unapproved','Not yet','No')")or die(mysql_error());
+            $insert = mysql_query("INSERT INTO tempword (word,definition,example,tags,name,email,status,moderator,existinguser,date)
+        VALUES('$word','$definition','$example','$tag','$name','$email','Unapproved','Not yet','No',now())") or die(mysql_error());
             echo '<p class="success">Congratulations your word has been defined. <br/> Please wait for a few hours while moderators check your word.<br/>We are also in the process of verifying your new psuedoname. Thanks!</p>';
         }
     } else if (mysql_num_rows($check) == 1) {
 // Check the email and name = SUCCESS
 
-        $insert = mysql_query("INSERT INTO tempword (word,definition,example,tags,name,email,status,moderator,existinguser)
-        VALUES('$word','$definition','$example','$tag','$name','$email','Unapproved','Not yet','Yes')");
+        $insert = mysql_query("INSERT INTO tempword (word,definition,example,tags,name,email,status,moderator,existinguser,date)
+        VALUES('$word','$definition','$example','$tag','$name','$email','Unapproved','Not yet','Yes',now())");
 
         echo '<p class="success">Congratulations your word has been defined. <br/> Please wait for a few hours while moderators check your word. Thanks!</p>';
     }

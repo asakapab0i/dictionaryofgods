@@ -7,7 +7,7 @@ function displayPending() {
     if (isset($_REQUEST['pending'])) {
         $wordid = $_REQUEST['pending'];
 
-        $sql = mysql_query("SELECT * FROM tempword WHERE id = '$wordid'");
+        $sql = mysql_query("SELECT * FROM tempword WHERE id = '$wordid' ORDER BY date ASC");
         while ($row = mysql_fetch_array($sql)) {
             echo '<div class="details word-style">';
             goBack();
@@ -20,6 +20,9 @@ function displayPending() {
             echo '<p>Tags: ' . $row['tags'] . '</p>';
             echo '<p>Author: ' . $row['name'] . '</p>';
             echo '<p>Email: ' . $row['email'] . '</p>';
+            echo '</div>';
+            echo '<div id="status">';
+            echo '<h2 class="stat">Status: ' . $row['status'] . '</h2>';
             echo '</div>';
         }
     } else {
@@ -64,7 +67,7 @@ function displayPending() {
         }
         $limit = 'LIMIT ' . ($pn - 1) * $itemsPerPage . ',' . $itemsPerPage;
 
-        $sql2 = mysql_query("SELECT * FROM tempword ORDER BY date $limit ");
+        $sql2 = mysql_query("SELECT * FROM tempword ORDER BY date DESC $limit ");
 
         $paginationDisplay = "";
 

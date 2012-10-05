@@ -1,3 +1,38 @@
+jQuery.extend({
+    /**
+     * Returns get parameters.
+     *
+     * If the desired param does not exist, null will be returned
+     *
+     * @example value = $.getURLParam("paramName");
+     */ 
+    getURLParam: function(strParamName){
+        var strReturn = "";
+        var strHref = window.location.href;
+        var bFound=false;
+	  
+        var cmpstring = strParamName + "=";
+        var cmplen = cmpstring.length;
+
+        if ( strHref.indexOf("?") > -1 ){
+            var strQueryString = strHref.substr(strHref.indexOf("?")+1);
+            var aQueryString = strQueryString.split("&");
+            for ( var iParam = 0; iParam < aQueryString.length; iParam++ ){
+                if (aQueryString[iParam].substr(0,cmplen)==cmpstring){
+                    var aParam = aQueryString[iParam].split("=");
+                    strReturn = aParam[1];
+                    bFound=true;
+                    break;
+                }
+	      
+            }
+        }
+        if (bFound==false) return null;
+        return strReturn;
+    }
+});
+
+
 $(function(){
     //Activate the menu
     $('#mainMenu a').addClass('buttonMenu');
@@ -32,5 +67,37 @@ $(function(){
     $('#back').click(function(e){
         e.preventDefault();
         window.history.back();
+    })
+});
+
+
+$(function(){
+    $('#do').click(function(){
+        var tempwordid = $.getURLParam("pending");
+        alert(tempwordid);
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost/dict/admin/include/ajax/pendingCRUD.php',
+            data: {
+                method: 'add word',
+                tempwordid: tempwordid
+                
+            }
+        }).done(function(data){
+            if(data == 'successfully added1'){
+                $('#stat').remove();
+                $('#status').html('<p class="success">Word is successfully Added <br/> Existing Psuedoname</p>');
+            }else if(data == 'successfully added2'){
+                $('#stat').remove();
+                $('#status').html('<p class="success">Word is successfully Added <br/> New Psuedoname</p>');
+            }else if(data == 'Word already added!'){
+                $('#stat').remove();
+                $('#status').html('<p class="success">Word is already Added.</p>');
+            }else{
+                alert(data);
+            }
+        }).error(function(data){
+            alert('An error occured!'+ data);
+        });
     })
 });

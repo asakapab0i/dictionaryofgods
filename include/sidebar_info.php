@@ -40,6 +40,8 @@ function sideBarInfoDefine() {
             echo '</div>';
             echo '<hr/>';
         }
+    } else {
+        echo '<div class="boxed2"><p style="margin-top: 300px; margin-left: 100px;" class=""><a class="footer-style" href="#" >Ad space</a></p></div><br/>';
     }
 }
 

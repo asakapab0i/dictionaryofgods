@@ -182,7 +182,7 @@ function definition() {
             }
         } else {
             echo '<p>Looks like the word your looking for is not yet defined.</p>';
-            echo '<a href="http://localhost/dict/add/undefined/' . rawurlencode($term) . '" class="buttonSmall active">Define it here</a>';
+            echo '<a href="http://localhost/dict/add/undefined/' . rawurlencode($term) . '" class="buttonSmall active">Define it here</a><br/><br/>';
         }
     } else {
         header('location: http://localhost/dict/');

@@ -22,7 +22,7 @@ function mainNavigation() {
 
 
     echo '<h2 class="alt center" id="mainMenu">
-                <a id="index" href="http://localhost/dict/wordoftheday"><img class="menuImages" src="http://localhost/dict/images/menu/lightning.png" width="24px" height=" height="22px"> word of the day</a>
+                <a id="index" href="http://localhost/dict/wordoftheday"><img class="menuImages" src="http://localhost/dict/images/menu/lightning.png" width="24px" height="22px"> word of the day</a>
                 <a id="dictionary" href="http://localhost/dict/dictionary/popular/a"><img class="menuImages" src="http://localhost/dict/images/dict_logo.png" width="24px" height="24px"> dictionary</a>
                 <a id="add" href="http://localhost/dict/add"><img class="menuImages" src="http://localhost/dict/images/menu/lightbulb_add.png" width="24px" height="22px"> add a word</a>
                 <a id="author" href="http://localhost/dict/author"><img class="menuImages" src="http://localhost/dict/images/menu/premium_support.png" width="24px" height="24px"> authors</a>
@@ -120,7 +120,10 @@ function sideBar() {
 
 function mainFooter() {
     echo '<div id="mainFooter" class="span-24">
-        <h4 class="center"><-------------255,242 words has been defined. Define your word <a class="footer-style" href="http://localhost/dict/add">here</a>!------------></h4><br/><br/><br/>
+        <div class="boxed center">
+        <p  style="color:black;"><a class="footer-style" href="http://localhost/dict/footer.php?ref=ads"><br/><br/> Ad space </a></p><br/>
+        </div><br/>
+        <hr/>
             <p class="alt word-style">
             <a id="about" class="alt footer-style" href="http://localhost/dict/footer.php?ref=about"> <img class="footerImages" src="http://localhost/dict/images/footer/about.png"/>About Us</a> 
             <a id="api" class="alt footer-style" href="http://localhost/dict/footer.php?ref=api"> <img class="footerImages" src="http://localhost/dict/images/footer/bricks.png"/>API</a> 

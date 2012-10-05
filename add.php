@@ -95,6 +95,7 @@ include 'include/library/pageTitles.php';
                             <tr>
                                 <td></td>
                                 <td><input id="submit" type="button" class="buttonMenu" value="add the word"></td>
+                                <td><div style="display:none" id="dvloader"><img src="http://localhost/dict/images/loading.gif" /></div></td>
                             </tr>
                         </table>
                     </form>

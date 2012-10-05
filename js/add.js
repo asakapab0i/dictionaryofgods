@@ -61,7 +61,7 @@ $(function(){
         
      
         $(this).validateForm(word,definition,example,tag,name,email);
-        
+        $('#dvloader').show();   
         $.ajax({
             type:'POST',
             url:'http://localhost/dict/include/ajax/add.php',
@@ -79,21 +79,27 @@ $(function(){
         }).success(function(data){
             alert(data);
             if(data == '<p class=\'error\'>Your psuedoname is already exist. Please choose another name.</p>'){
+                $('#dvloader').hide();
                 $('.error').remove();
                 $('#nest').prepend(data);
             }else if(data == '<p class=\'error\'>Your email is already exist. Please choose another email. </p>'){
+                $('#dvloader').hide();
                 $('.error').remove();
                 $('#nest').prepend(data);
             }else if(data == '<p class="success">Congratulations your word has been defined. <br/> Please wait for a few hours while moderators check your word. Thanks!</p>'){
+                $('#dvloader').hide();
                 $('#nest').html(data);
             }else if(data == '<p class="error">Error captcha input.</p>'){
+                $('#dvloader').hide();
                 //alert(captcha);
                 $('.error').remove();
                 $('#nest').prepend(data);
             }else if(data == '<p class="error">Your email is incorrect. Please try again.</p>'){
+                $('#dvloader').hide();
                 $('.error').remove();
                 $('#nest').prepend(data);
             }else if(data == '<p class="success">Congratulations your word has been defined. <br/> Please wait for a few hours while moderators check your word.<br/>We are also in the process of verifying your new psuedoname. Thanks!</p>'){
+                $('#dvloader').hide();
                 $('#nest').html(data);
             }
         });

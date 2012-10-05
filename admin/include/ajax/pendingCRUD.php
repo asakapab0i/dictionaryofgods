@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 include '../../../include/db/connect.php';
 
@@ -8,6 +9,7 @@ if (isset($_REQUEST['method']) && isset($_REQUEST['tempwordid'])) {
     $method = $_REQUEST['method'];
 
     if ($method == 'add word') {
+        
         addWord($tempwordid);
     }
 }

@@ -3,6 +3,7 @@
 include '../../../include/db/connect.php';
 
 if (isset($_REQUEST['reportid']) && isset($_REQUEST['wordmapid']) && isset($_REQUEST['method'])) {
+    $moderator = $_SESSION['username'];
     $reportid = $_REQUEST['reportid'];
     $reportid = rtrim($reportid, '#');
     $wordmapid = $_REQUEST['wordmapid'];
@@ -47,8 +48,8 @@ if (isset($_REQUEST['reportid']) && isset($_REQUEST['wordmapid']) && isset($_REQ
         //update begins
         mysql_query("UPDATE author SET written_article = (written_article - 1) 
                 WHERE id = '$authorid'") or die(mysql_error());
-        mysql_query("UPDATE report set word_status = 'DELETED'
-                WHERE id = '$reportid'");
+        mysql_query("UPDATE report SET word_status = 'DELETED', moderator = '$moderator'
+                WHERE id = '$reportid'") or die(mysql_error());
 
         //echo result
         echo 'successfully deleted';

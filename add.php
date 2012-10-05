@@ -24,7 +24,8 @@ include 'include/library/pageTitles.php';
     </head>
     <body>
         <div class="container" id="wrapper">
-            <?php mainHeader(); ?>
+            <?php mainHeader(); 
+            subNavigation();?>
 
             <div id="workspace" class="span-14 prepend-1 colborder">
                 <hr>

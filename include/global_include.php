@@ -109,7 +109,7 @@ function sideBar() {
          <div id="nestedsidebar2" class="span-7">';
 
     sideBarInfoDefine();
-    
+
     echo '</div>
              
                 </div>
@@ -120,7 +120,15 @@ function sideBar() {
 
 function mainFooter() {
     echo '<div id="mainFooter" class="span-24">
-            <h2 class="alt">You may pick and choose amongst these and many more features, so be bold.</h2>
+        <h4 class="center"><-------------255,242 words has been defined. Define your word <a class="footer-style" href="http://localhost/dict/add">here</a>!------------></h4><br/><br/><br/>
+            <p class="alt word-style">
+            <a id="about" class="alt footer-style" href="http://localhost/dict/footer.php?ref=about"> <img class="footerImages" src="http://localhost/dict/images/footer/about.png"/>About Us</a> 
+            <a id="api" class="alt footer-style" href="http://localhost/dict/footer.php?ref=api"> <img class="footerImages" src="http://localhost/dict/images/footer/bricks.png"/>API</a> 
+            <a id="tech" class="alt footer-style" href="http://localhost/dict/footer.php?ref=technology"> <img class="footerImages" src="http://localhost/dict/images/footer/tech.png"/>Technology</a> 
+            <a id="term" class="alt footer-style" href="http://localhost/dict/footer.php?ref=term"> <img class="footerImages" src="http://localhost/dict/images/footer/term.png"/>Terms</a> 
+            <a id="data" class="alt footer-style" href="http://localhost/dict/footer.php?ref=data"> <img class="footerImages" src="http://localhost/dict/images/footer/data.png"/>Data</a> 
+            <a id="ads" class="alt footer-style" href="http://localhost/dict/footer.php?ref=ads"> <img class="footerImages" src="http://localhost/dict/images/footer/advertising.png"/>Advertise</a>
+            </p>
             </div>
             <hr>';
     //failsafe

@@ -292,7 +292,7 @@ function full_url() {
 }
 
 function adBox() {
-    echo '<div class="boxed3 center"><br/><br/><br/><br/><br/><a class="footer-style" href="http://localhost/dict/footer.php?ref=ads"><br/><br/> Ad space </a></div><br/>';
+    echo '<div class="boxed3 center"><br/><br/><br/><br/><br/><a class="footer-style" href="http://localhost/dict/footer/ads"><br/><br/> Ad space </a></div><br/>';
 }
 
 ?>

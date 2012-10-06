@@ -121,7 +121,7 @@ function sideBar() {
 function mainFooter() {
     echo '<div id="mainFooter" class="span-24">
         <div class="boxed center">
-        <p  style="color:black;"><a class="footer-style" href="http://localhost/dict/footer.php?ref=ads"><br/><br/> Ad space </a></p><br/>
+        <p  style="color:black;"><a class="footer-style" href="http://localhost/dict/footer/ads"><br/><br/> Ad space </a></p><br/>
         </div><br/>
         <hr/>
             <p class="alt word-style">

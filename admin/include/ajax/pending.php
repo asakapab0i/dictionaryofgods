@@ -67,7 +67,7 @@ function displayPending() {
         }
         $limit = 'LIMIT ' . ($pn - 1) * $itemsPerPage . ',' . $itemsPerPage;
 
-        $sql2 = mysql_query("SELECT * FROM tempword ORDER BY date DESC $limit ");
+        $sql2 = mysql_query("SELECT * FROM tempword ORDER BY status DESC $limit ");
 
         $paginationDisplay = "";
 

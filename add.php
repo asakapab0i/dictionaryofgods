@@ -24,8 +24,10 @@ include 'include/library/pageTitles.php';
     </head>
     <body>
         <div class="container" id="wrapper">
-            <?php mainHeader(); 
-            subNavigation();?>
+            <?php
+            mainHeader();
+            subNavigation();
+            ?>
 
             <div id="workspace" class="span-14 prepend-1 colborder">
                 <hr>
@@ -93,18 +95,16 @@ include 'include/library/pageTitles.php';
                                     <img class="menuImages" src='http://localhost/dict/include/ajax/captcha.php' /></td>
 
                             </tr>
-                            <tr>
-                                <td></td>
-                                <td><input id="submit" type="button" class="buttonMenu" value="add the word"></td>
-                                <td><div style="display:none" id="dvloader"><img src="http://localhost/dict/images/loading.gif" /></div></td>
-                            </tr>
                         </table>
+                        <div style="margin-left: 95px"> 
+                            <input id="submit" type="button" class="buttonMenu" value="add the word"><img style="display:none;" id="dvloader" src="http://localhost/dict/images/loading.gif" />
+                        </div><br/>
                     </form>
                 </div>
             </div>
 
             <?php sideBar(); ?>
-            <?php mainFooter(); ?>
+<?php mainFooter(); ?>
 
         </div>
         <script src="http://localhost/dict/js/wmd.js"></script>

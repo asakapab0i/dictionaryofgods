@@ -40,7 +40,9 @@ function definition() {
 
 
         if ($sql) {
+            $counter = 1;
             while ($row = mysql_fetch_array($sql)) {
+
                 $name = $row['name'];
                 $tags = $row['tag'];
 
@@ -49,7 +51,7 @@ function definition() {
                 echo '<p><span id="upNum' . $row['defid'] . '">' . $row['up'] . '</span><img src="http://localhost/dict/images/up.png" class="imageup" id="' . $row['defid'] . '" />';
                 echo '<span id="downNum' . $row['defid'] . '">' . $row['down'] . ' </span><img src="http://localhost/dict/images/down.png" class="imagedown" id="' . $row['defid'] . '"/>';
                 echo '</p></div>';
-                echo '<h3>' . $row['word'] . '</h3> ';
+                echo '<a style="font-size:20px;" href="http://localhost/dict/permalink/' . $row['word'] . '/' . $defid . '">' . $counter . '</a><h3>' . $row['word'] . '</h3> ';
                 echo '<span class="definition-style"><p>' . $row['definition'] . '</p></span>';
                 echo '<span class="example-style"><p>' . '"' . $row['example'] . '"' . '</p></span>';
                 echo '<p>';
@@ -65,6 +67,7 @@ function definition() {
                 echo '</div>';
                 echo '<hr/>';
                 adBox();
+                $counter++;
             }
         }
     } else if (isset($_REQUEST['term']) && isset($_REQUEST['permadefid'])) {
@@ -96,7 +99,9 @@ function definition() {
                                         INNER JOIN tag ON definition.tag_id = tag.id
                                         WHERE word.word = '$term' AND definition.id = '$permadefid'") or die(mysql_error());
         if (mysql_num_rows($sql) == 1) {
+            $counter = 1;
             while ($row = mysql_fetch_array($sql)) {
+
                 $name = $row['name'];
                 $tags = $row['tag'];
 
@@ -105,7 +110,7 @@ function definition() {
                 echo '<p><span id="upNum' . $row['defid'] . '">' . $row['up'] . '</span><img src="http://localhost/dict/images/up.png" class="imageup" id="' . $row['defid'] . '" />';
                 echo '<span id="downNum' . $row['defid'] . '">' . $row['down'] . ' </span><img src="http://localhost/dict/images/down.png" class="imagedown" id="' . $row['defid'] . '"/>';
                 echo '</p></div>';
-                echo '<h3>' . $row['word'] . '</h3> ';
+                echo '<a style="font-size:20px;" href="http://localhost/dict/permalink/' . $row['word'] . '/' . $row['defid'] . '">' . $counter . '</a> <h3>' . $row['word'] . '</h3> ';
                 echo '<span class="definition-style"><p>' . $row['definition'] . '</p></span>';
                 echo '<span class="example-style"><p>' . '"' . $row['example'] . '"' . '</p></span>';
                 echo '<p>';
@@ -119,7 +124,9 @@ function definition() {
                 reportForm($row['wordmapid'], $row['defid'], full_url(), $row['word']);
                 shareForm($row['wordmapid']);
                 echo '</div>';
+                echo '<hr/>';
                 adBox();
+                $counter++;
             }
         } else {
             echo '<p class="error">Word is not available.</p>';
@@ -156,8 +163,9 @@ function definition() {
         echo '<h3>Definitions for the word: ' . urldecode($term) . '</h3>';
 
         if (mysql_numrows($sql) > 0) {
-
+            $counter = 1;
             while ($row = mysql_fetch_array($sql)) {
+
                 $name = $row['name'];
                 $tags = $row['tag'];
 
@@ -166,7 +174,7 @@ function definition() {
                 echo '<p><span id="upNum' . $row['defid'] . '">' . $row['up'] . '</span><img src="http://localhost/dict/images/up.png" class="imageup" id="' . $row['defid'] . '" />';
                 echo '<span id="downNum' . $row['defid'] . '">' . $row['down'] . ' </span><img src="http://localhost/dict/images/down.png" class="imagedown" id="' . $row['defid'] . '"/>';
                 echo '</p></div>';
-                echo '<h3>' . $row['word'] . '</h3> ';
+                echo '<a style="font-size:20px; display:inline;" href="http://localhost/dict/permalink/' . $row['word'] . '/' . $row['defid'] . '">' . $counter . '</a><h3>' . $row['word'] . '</h3> ';
                 echo '<span class="definition-style"><p>' . $row['definition'] . '</p></span>';
                 echo '<span class="example-style"><p>' . $row['example'] . '</p></span>';
                 echo '<p>';
@@ -182,6 +190,7 @@ function definition() {
                 echo '</div>';
                 echo '<hr/>';
                 adBox();
+                $counter++;
             }
         } else {
             echo '<p class="error word-style">Looks like the word your looking for is not yet defined.</p>';

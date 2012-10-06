@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 include '../../../include/db/connect.php';
 
 if (isset($_REQUEST['reportid']) && isset($_REQUEST['wordmapid']) && isset($_REQUEST['method'])) {

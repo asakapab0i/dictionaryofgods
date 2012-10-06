@@ -110,7 +110,7 @@ function definition() {
                 echo '<p><span id="upNum' . $row['defid'] . '">' . $row['up'] . '</span><img src="http://localhost/dict/images/up.png" class="imageup" id="' . $row['defid'] . '" />';
                 echo '<span id="downNum' . $row['defid'] . '">' . $row['down'] . ' </span><img src="http://localhost/dict/images/down.png" class="imagedown" id="' . $row['defid'] . '"/>';
                 echo '</p></div>';
-                echo '<a style="font-size:20px;" href="http://localhost/dict/permalink/' . $row['word'] . '/' . $row['defid'] . '">' . $counter . '</a> <h3>' . $row['word'] . '</h3> ';
+                echo '<h3>' . $row['word'] . '</h3> ';
                 echo '<span class="definition-style"><p>' . $row['definition'] . '</p></span>';
                 echo '<span class="example-style"><p>' . '"' . $row['example'] . '"' . '</p></span>';
                 echo '<p>';

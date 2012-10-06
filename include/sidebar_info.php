@@ -41,7 +41,7 @@ function sideBarInfoDefine() {
             echo '<hr/>';
         }
     } else {
-        echo '<div class="boxed2"><p style="margin-top: 300px; margin-left: 100px;" class=""><a class="footer-style" href="http://localhost/dict/footer.php?ref=ads" >Ad space</a></p></div><br/>';
+        echo '<div class="boxed2"><p style="margin-top: 300px; margin-left: 100px;" class=""><a class="footer-style" href="http://localhost/dict/footer/ads" >Ad space</a></p></div><br/>';
     }
 }
 

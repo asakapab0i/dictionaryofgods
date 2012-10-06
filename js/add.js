@@ -77,7 +77,7 @@ $(function(){
             }
 
         }).success(function(data){
-            alert(data);
+           // alert(data);
             if(data == '<p class=\'error\'>Your psuedoname is already exist. Please choose another name.</p>'){
                 $('#dvloader').hide();
                 $('.error').remove();

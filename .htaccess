@@ -19,6 +19,7 @@ RewriteRule ^tagged/([^/]*)$ tags.php?tagged=$1
 RewriteRule ^wordoftheday$ index.php
 RewriteRule ^wordoftheday/p/([^/]*)$ index.php?pn=$1
 RewriteRule ^permalink/([^/]*)/([^/]*)$ define.php?term=$1&permadefid=$2
+RewriteRule ^footer/([^/]*)$ footer.php?ref=$1
 
 
 

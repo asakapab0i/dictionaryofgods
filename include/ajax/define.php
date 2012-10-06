@@ -64,6 +64,7 @@ function definition() {
                 shareForm($row['wordmapid']);
                 echo '</div>';
                 echo '<hr/>';
+                adBox();
             }
         }
     } else if (isset($_REQUEST['term']) && isset($_REQUEST['permadefid'])) {
@@ -118,6 +119,7 @@ function definition() {
                 reportForm($row['wordmapid'], $row['defid'], full_url(), $row['word']);
                 shareForm($row['wordmapid']);
                 echo '</div>';
+                adBox();
             }
         } else {
             echo '<p class="error">Word is not available.</p>';
@@ -179,6 +181,7 @@ function definition() {
                 shareForm($row['wordmapid']);
                 echo '</div>';
                 echo '<hr/>';
+                adBox();
             }
         } else {
             echo '<p>Looks like the word your looking for is not yet defined.</p>';
@@ -277,6 +280,10 @@ function full_url() {
     $protocol = substr(strtolower($_SERVER["SERVER_PROTOCOL"]), 0, strpos(strtolower($_SERVER["SERVER_PROTOCOL"]), "/")) . $s;
     //$port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":" . $_SERVER["SERVER_PORT"]);
     return $protocol . "://" . $_SERVER['SERVER_NAME'];
+}
+
+function adBox() {
+    echo '<div class="boxed3 center"><br/><br/><br/><br/><br/><a class="footer-style" href="http://localhost/dict/footer.php?ref=ads"><br/><br/> Ad space </a></div><br/>';
 }
 
 ?>

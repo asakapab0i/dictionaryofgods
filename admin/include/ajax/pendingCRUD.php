@@ -1,7 +1,9 @@
 <?php
+
 session_start();
 
 include '../../../include/db/connect.php';
+
 
 if (isset($_REQUEST['method']) && isset($_REQUEST['tempwordid'])) {
     $tempwordid = $_REQUEST['tempwordid'];
@@ -9,26 +11,27 @@ if (isset($_REQUEST['method']) && isset($_REQUEST['tempwordid'])) {
     $method = $_REQUEST['method'];
 
     if ($method == 'add word') {
-        
+
         addWord($tempwordid);
     }
 }
 
 function addWord($tempwordid) {
+    include '../../../include/library/dataCleansing.php';
     //get the current moderator
     $moderator = $_SESSION['username'];
     //get the necessary variables
     $sql = mysql_query("SELECT * FROM tempword WHERE id = '$tempwordid'");
 
     while ($row = mysql_fetch_array($sql)) {
-        $word = $row['word'];
-        $definition = $row['definition'];
-        $example = $row['example'];
-        $tag = $row['tags'];
-        $author = $row['name'];
+        $word = $cleanData->stripAndEscape($row['word']);
+        $definition = $cleanData->stripAndEscape($row['definition']);
+        $example = $cleanData->stripAndEscape($row['example']);
+        $tag = $cleanData->stripAndEscape($row['tags']);
+        $author = $cleanData->stripAndEscape($row['name']);
         //$email = $row['email'];
-        $status = $row['status'];
-        $date = $row['date'];
+        $status = $cleanData->stripAndEscape($row['status']);
+        $date = $cleanData->stripAndEscape($row['date']);
     }
     if ($status == 'Unapproved') {
         //get the id of the author

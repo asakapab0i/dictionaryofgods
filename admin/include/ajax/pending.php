@@ -22,7 +22,7 @@ function displayPending() {
             echo '<p>Email: ' . $row['email'] . '</p>';
             echo '</div>';
             echo '<div id="status">';
-            echo '<h2 class="stat">Status: ' . $row['status'] . '</h2>';
+            echo '<h2 id="stat">Status: ' . $row['status'] . '</h2>';
             echo '</div>';
         }
     } else {

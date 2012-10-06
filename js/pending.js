@@ -84,17 +84,17 @@ $(function(){
                 
             }
         }).done(function(data){
-            if(data == 'successfully added1'){
+            if(data == 'succesfully added1'){
                 $('#stat').remove();
-                $('#status').html('<p class="success">Word is successfully Added <br/> Existing Psuedoname</p>');
-            }else if(data == 'successfully added2'){
+                $('#status').html('<p class="success">Word is successfully Added <br/></p>');
+            }else if(data == 'succesfully added2'){
                 $('#stat').remove();
-                $('#status').html('<p class="success">Word is successfully Added <br/> New Psuedoname</p>');
+                $('#status').html('<p class="success">Word is successfully Added <br/></p>');
             }else if(data == 'Word already added!'){
                 $('#stat').remove();
                 $('#status').html('<p class="success">Word is already Added.</p>');
             }else{
-                alert(data);
+                //alert(data);
             }
         }).error(function(data){
             alert('An error occured!'+ data);

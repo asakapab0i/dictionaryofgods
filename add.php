@@ -29,7 +29,7 @@ include 'include/library/pageTitles.php';
 
             <div id="workspace" class="span-14 prepend-1 colborder">
                 <hr>
-                <div id="nest" class="span-14 first">
+                <div id="nest" class="span-14 first word-style">
                     <form id="addword" method="post" action="add.php">
                         <h3>Add a definition.</h3>
                         <table>

@@ -64,7 +64,7 @@ function recentWord() {
                 echo '</div>';
             }
         } else {
-            echo 'No word has been submitted yet.';
+            echo '<p class="error word-style">No word has been submitted on this date.</p>';
         }
     }
 }

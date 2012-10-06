@@ -184,7 +184,7 @@ function definition() {
                 adBox();
             }
         } else {
-            echo '<p>Looks like the word your looking for is not yet defined.</p>';
+            echo '<p class="error word-style">Looks like the word your looking for is not yet defined.</p>';
             echo '<a href="http://localhost/dict/add/undefined/' . rawurlencode($term) . '" class="buttonSmall active">Define it here</a><br/><br/>';
         }
     } else {

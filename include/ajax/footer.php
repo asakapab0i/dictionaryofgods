@@ -100,7 +100,7 @@ function founderInfoLei() {
 }
 
 // end about display
-
+//start api
 function displayAPI() {
     echo '<div class="kugmo word-style">';
     echo '<h2>API Documentation</h2>';
@@ -134,6 +134,48 @@ function displayAPI() {
     echo '<p>Refer to this image below: </p>';
     echo '<img src="http://localhost/dict/images/code.bmp" width="550px">';
     echo '</div>';
+}
+
+//end api
+
+function displayTech() {
+    echo '<div class="kugmo word-style">';
+    echo '<h2>Technology Used</h2>';
+    echo '<p>Apache - Powerful server</p>';
+    echo '<p>MySQL - Database</p>';
+    echo '<p>jQuery - JS plugin</p>';
+    echo '<p>derobins WDM - WYSIWYG tool</p>';
+    echo '<p>Apache rewrite module - url rewrite</p>';
+    echo '<p>Facebook plugins - developer\'s page</p>';
+    echo '<p>Git - version control</p>';
+    echo '<p>GitHub.com - git server</p>';
+    echo '<p>NetBeans - IDE</p>';
+    echo '<p>Microsoft scheduler - automated scripts</p>';
+    echo '<p>Fat Cow icons - images</p>';
+    echo '<p>http://blueprintcss.org - for CSS framework and grid system</p>';
+    echo '<p>php ofcourse</p>';
+    echo '</div>';
+
+    echo '<div class="kugmo word-style">';
+    echo '<h2>Resources</h2>';
+    echo '<p>StackOverflow.com</p>';
+    echo '<p>Google.com</p>';
+    echo '<p>php.net</p>';
+    echo '<p>w3cschool.com</p>';
+    echo '<p>daniweb.com</p>';
+    echo '</div>';
+}
+
+function displayTerm() {
+    echo '<h2>Terms</h2>';
+}
+
+function displayData() {
+    echo '<h2>Data</h2>';
+}
+
+function displayAds() {
+    echo '<h2>Advertising</h2>';
 }
 
 ?>

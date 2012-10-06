@@ -8,15 +8,19 @@
                 $.getJSON("http://localhost/dict/api/api.php?method=getRandomWord&getEstoryahe=?",
                 function(data){
                     
-                    var obj = JSON.stringify(data);
-                    $('#word').html(obj);
+                    for(auser in data){
+                        var user = data[auser];
+                        var a = console.log(user.defid)
+                    }
+                     var obj = JSON.stringify(user.word);
+                     $('#word').html(obj);
                 });
             });
         </script>
     </head>
     <body>
         <div id="word">
-            
+
         </div>
     </body>
 </html>

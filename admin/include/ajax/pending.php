@@ -74,7 +74,7 @@ function displayPending() {
         if ($lastPage != "1") {
             // This shows the user what page they are on, and the total number of pages
             $paginationDisplay .= 'Page <strong>' . $pn . '</strong> of ' . $lastPage . '&nbsp;  &nbsp;  &nbsp; ';
-            $paginationDisplay .= '&nbsp;  <a href="http://localhost/dict/wordoftheday/p/1">First</a> ';
+            $paginationDisplay .= '&nbsp;  <a href="http://localhost/dict/admin/pending.php?pn=1">First</a> ';
             // If we are not on page 1 we can place the Back button
             if ($pn != 1) {
                 $previous = $pn - 1;

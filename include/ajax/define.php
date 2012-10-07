@@ -66,7 +66,7 @@ function definition() {
                 shareForm($row['wordmapid']);
                 echo '</div>';
                 echo '<hr/>';
-                adBox();
+               // adBox();
                 $counter++;
             }
         }
@@ -189,7 +189,7 @@ function definition() {
                 shareForm($row['wordmapid']);
                 echo '</div>';
                 echo '<hr/>';
-                adBox();
+                //adBox();
                 $counter++;
             }
         } else {

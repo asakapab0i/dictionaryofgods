@@ -54,7 +54,7 @@ function mainFooter() {
     include '../include/db/connect.php';
     echo '<hr/>';
     echo '<div id = "mainFooter" class = "span-24">
-    <h2 class = "alt">You may pick and choose amongst these and many more features, so be bold.</h2>
+    <h2 class = "alt">Less is more! and Simplicity is beauty.</h2>
     </div>
     <hr>';
     //failsafe

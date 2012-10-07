@@ -172,7 +172,7 @@ function reportActionMenu() {
 }
 
 function goBack() {
-    echo '<a href="#" class="buttonAction" id="back">Go back</a>';
+    echo '<a href="http://localhost/dict/admin/reports.php" class="buttonAction" id="back">Go back</a>';
 }
 
 ?>

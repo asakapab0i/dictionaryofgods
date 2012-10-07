@@ -82,7 +82,7 @@ $(function(){
         var form = 'report';
         
         $(this).validateReportForm(report_type,report_details,report_email);
-        
+        $('#dvloader').show();
         $.ajax({
             type:'POST',
             url: 'http://localhost/dict/include/ajax/formProcessing.php',
@@ -102,7 +102,10 @@ $(function(){
                     e.preventDefault();
                 });
                 $('#reportform').html('<p class="success">Thank you for submitting the report. We will process this in a few.</p>');
+                $('#dvloader').show();
             }
+        }).error(function(data){
+            alert('Something went wrong!'+ data);
         });
         
     });

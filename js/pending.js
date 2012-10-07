@@ -55,7 +55,7 @@ function out(_row){
 //for product redirection
 }
 
-function clicked(_rowx,_rowy){
+function clicked(_rowx){
     var x = _rowx;
     //document.location.href=("../employee/product.php?pid="+ x);
     document.location.href=("http://localhost/dict/admin/pending.php?pending="+x);
@@ -73,31 +73,39 @@ $(function(){
 
 $(function(){
     $('#do').click(function(){
-        var tempwordid = $.getURLParam("pending");
-        alert(tempwordid);
-        $.ajax({
-            type: 'POST',
-            url: 'http://localhost/dict/admin/include/ajax/pendingCRUD.php',
-            data: {
-                method: 'add word',
-                tempwordid: tempwordid
+        if(confirm('Are you sure you want to add this word?')){
+            $('#dvloader').show(); 
+            var tempwordid = $.getURLParam("pending");
+            //alert(tempwordid);
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost/dict/admin/include/ajax/pendingCRUD.php',
+                data: {
+                    method: 'add word',
+                    tempwordid: tempwordid
                 
-            }
-        }).done(function(data){
-            if(data == 'succesfully added1'){
-                $('#stat').remove();
-                $('#status').html('<p class="success">Word is successfully Added <br/></p>');
-            }else if(data == 'succesfully added2'){
-                $('#stat').remove();
-                $('#status').html('<p class="success">Word is successfully Added <br/></p>');
-            }else if(data == 'Word already added!'){
-                $('#stat').remove();
-                $('#status').html('<p class="success">Word is already Added.</p>');
-            }else{
+                }
+            }).done(function(data){
+                if(data == 'succesfully added1'){
+                    $('#stat').remove();
+                    $('#status').html('<p class="success word-style">Word is successfully Added <br/></p>');
+                    $('#dvloader').hide(); 
+                }else if(data == 'succesfully added2'){
+                    $('#stat').remove();
+                    $('#status').html('<p class="success word-style">Word is successfully Added <br/></p>');
+                    $('#dvloader').hide(); 
+                }else if(data == 'Word already added!'){
+                    $('#stat').remove();
+                    $('#status').html('<p class="success word-style">Word is already Added.</p>');
+                    $('#dvloader').hide(); 
+                }else{
                 //alert(data);
-            }
-        }).error(function(data){
-            alert('An error occured!'+ data);
-        });
-    })
+                }
+            }).error(function(data){
+                alert('An error occured!'+ data);
+                $('#dvloader').hide(); 
+            });
+        }
+    });
+
 });

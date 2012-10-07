@@ -49,8 +49,9 @@ if (isset($_SESSION['username']) && isset($_SESSION['password']) && isset($_SESS
             <div id="workspace" class="span-22 prepend-1 ">
                 <hr/>
                 <div id="nest" class="span-22 first">
+                    <img style="display:none;" id="dvloader" src="http://localhost/dict/images/loading.gif" />
                     <?php displayPending(); ?>
-                    
+
                 </div>
             </div>
 

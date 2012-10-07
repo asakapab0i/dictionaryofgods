@@ -108,7 +108,7 @@ function deleteWord(wordmapid, reportid){
         //this.preventDefault();
         //alert(wordmapid);
         //alert(reportid);
-    
+        $('#dvloader').show(); 
         var method = 'delete';
         $.ajax({
             type : 'POST',
@@ -121,17 +121,22 @@ function deleteWord(wordmapid, reportid){
         }).success(function(data){
             if(data == 'successfully deleted'){
                 $('#status').remove();
-                $('#statbox').html('<p class=error>Word has been deleted!</p>');
+                $('#statbox').html('<p class="error word-style">Word has been deleted!</p>');
+                $('#dvloader').hide(); 
             }else if(data == 'hello world!'){
-                alert(data);
+                //alert(data);
+                $('#dvloader').hide();
             }
             else{
-                alert(data);
-                alert('Word already deleted!');
+                //alert(data);
+                $('#status').remove();
+                $('#statbox').html('<p class="error word-style">Word already deleted!</p>');
+                $('#dvloader').hide();
             }
+    
         });
-        
-    }
+    }    
+    
    
 }
 function editWord(){

@@ -19,7 +19,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['password']) && isset($_SESS
           <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection">
         <![endif]-->
         <script src="http://localhost/dict/js/jquery.js"></script>
-        <script src="http://localhost/dict/js/admin.js"></script>
+        <script src="http://localhost/dict/js/login.js"></script>
     </head>
     <body>
         <div class="container" id="wrapper">
@@ -33,14 +33,15 @@ if (isset($_SESSION['username']) && isset($_SESSION['password']) && isset($_SESS
             <div id="workspace" class="span-22 prepend-1 ">
                 <hr/>
                 <div id="nest" class="span-22 first center">
-                    <form action="include/ajax/login.php" method="post">
+                    <h2>Admin Credentials</h2>
+                    <div id="notif"></div>
+                    <form  method="post">
                         <table class="login-table-style center">
-                            <h2>Admin Credentials</h2>
                             <tr>
-                                <td class="center"><label for="username">Username <input type="text" size="15" name="username"></label>
-                                    <br/> <label for="password">Password <input type="password" size="15" name="password"></label></td>
-                                <td class="center"><label for="access_token">Access Code<input type="text" size="15" name="access_token"></label></td>
-                            <br/> <td class="center"><input type="submit" value="Identify Yourself " class="buttonSmall" size=""></td>
+                                <td class="center"><label for="username">Username <input id="user" type="text" size="15" name="username"></label>
+                                    <br/> <label for="password">Password <input id="pass" type="password" size="15" name="password"></label></td>
+                                <td class="center"><label for="access_token">Access Code<input id="code" type="text" size="15" name="access_token"></label></td>
+                            <br/> <td class="center"><input id="login" type="button" value="Identify Yourself " class="buttonSmall" size=""><img style="display:none;" id="dvloader" src="http://localhost/dict/images/loading.gif" /></td>
                             </tr>
                         </table>
                     </form>

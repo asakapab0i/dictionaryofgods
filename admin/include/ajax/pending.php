@@ -34,7 +34,7 @@ function displayPending() {
         } else {
             $pn = 1;
         }
-        $itemsPerPage = 5;
+        $itemsPerPage = 10;
         $lastPage = ceil($nr / $itemsPerPage);
 
         if ($pn < 1) {
@@ -67,7 +67,7 @@ function displayPending() {
         }
         $limit = 'LIMIT ' . ($pn - 1) * $itemsPerPage . ',' . $itemsPerPage;
 
-        $sql2 = mysql_query("SELECT * FROM tempword ORDER BY status DESC $limit ");
+        $sql2 = mysql_query("SELECT * FROM tempword ORDER BY date DESC $limit ");
 
         $paginationDisplay = "";
 
@@ -124,7 +124,7 @@ function wordActionMenu() {
 }
 
 function goBack() {
-    echo '<a href="#" class="buttonAction" id="back">Go back</a>';
+    echo '<a href="http://localhost/dict/admin/pending.php" class="buttonAction" id="back">Go back</a>';
 }
 
 ?>

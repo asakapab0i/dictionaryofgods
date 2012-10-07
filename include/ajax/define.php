@@ -129,7 +129,7 @@ function definition() {
                 $counter++;
             }
         } else {
-            echo '<p class="error">Word is not available.</p>';
+            echo '<p class="error word-style">Word is not available.</p>';
         }
     } else if (isset($_REQUEST['term'])) {
         $term = $cleanData->stripAndEscape($_REQUEST['term']);
@@ -235,7 +235,7 @@ function reportForm($data, $defid, $url, $word) {
             </td><tr>';
     echo '<tr><td>Details</td><td><textarea id="reportdetails" placeholder="Write the full details of the report."></textarea></td></tr>';
     echo '<tr><td>Email</td><td><input type="email" id="reportemail"></td></tr>';
-    echo '<tr><td></td><td><input id="sendReport" class="buttonSmall" type="button" value="Submit Report"></td></tr>';
+    echo '<tr><td><img style="display:none;" id="dvloader" src="http://localhost/dict/images/loading.gif" /></td><td><input id="sendReport" class="buttonSmall" type="button" value="Submit Report"></td></tr>';
     echo '</table>';
     echo '</form>';
     echo '</div>';

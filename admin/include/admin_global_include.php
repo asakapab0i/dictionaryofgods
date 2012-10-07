@@ -25,13 +25,13 @@ function adminHeader() {
 function adminNavigation() {
 
     echo '<h2 class = "alt center" id = "mainMenu">
-    <a id="report" href="http://localhost/dict/admin/reports.php"><img class = "menuImages" src = "http://localhost/dict/images/menu/lightning.png" width = "24px" height = " height="22px"> Reports</a>
-                <a id="pending" href="http://localhost/dict/admin/pending.php"><img class="menuImages" src="http://localhost/dict/images/dict_logo.png" width="24px" height="24px"> Words</a>
-    <a id = "statistics" href = "#"><img class = "menuImages" src = "http://localhost/dict/images/menu/lightbulb_add.png" width = "24px" height = "22px"> Statistics</a>
-    <a id = "database" href = "#"><img class = "menuImages" src = "http://localhost/dict/images/menu/premium_support.png" width = "24px" height = "24px"> Database</a>
-    <a id = "utilities" href = "#"><img class = "menuImages" src = "http://localhost/dict/images/menu/tags_cloud.png" width = "24px" height = "24px"> Utilities</a>
-    <a id="Maintenance" href = "#"><img class = "menuImages" src = "http://localhost/dict/images/menu/wordpress_blog.png" width = "24px" height = "24px"> Maintenance</a>
-    <a id="Notes" href = "#"><img class = "menuImages" src = "http://localhost/dict/images/menu/wordpress_blog.png" width = "24px" height = "24px"> Notes</a>
+    <a id="report" href="http://localhost/dict/admin/reports.php"><img class = "menuImages" src = "http://localhost/dict/images/menu/ask.png" width = "24px" height = " height="22px"> Reports</a>
+                <a id="pending" href="http://localhost/dict/admin/pending.php"><img class="menuImages" src="http://localhost/dict/images/menu/lights.png" width="24px" height="24px"> Words</a>
+    <a id = "statistics" href = "#"><img class = "menuImages" src = "http://localhost/dict/images/menu/diagramm.png" width = "24px" height = "22px"> Statistics</a>
+    <a id = "database" href = "#"><img class = "menuImages" src = "http://localhost/dict/images/menu/db.png" width = "24px" height = "24px"> Database</a>
+    <a id = "utilities" href = "#"><img class = "menuImages" src = "http://localhost/dict/images/menu/hammer.png" width = "24px" height = "24px"> Utilities</a>
+    <a id="Maintenance" href = "#"><img class = "menuImages" src = "http://localhost/dict/images/menu/bogo.png" width = "24px" height = "24px"> Maintenance</a>
+    <a id="Notes" href = "#"><img class = "menuImages" src = "http://localhost/dict/images/menu/note.png" width = "24px" height = "24px"> Notes</a>
     </h2>';
 }
 

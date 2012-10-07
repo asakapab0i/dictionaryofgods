@@ -38,7 +38,7 @@ function generateWords() {
             $i++;
         }
     } else {
-        echo 'I dont know!!';
+        echo '<p class="success word-style">Bryan GWAPO!</p>';
     }
 }
 

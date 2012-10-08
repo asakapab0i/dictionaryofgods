@@ -2,19 +2,19 @@ $(function(){
     
     //start get param
     /* Copyright (c) 2006 Mathias Bank (http://www.mathias-bank.de)
- * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) 
- * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
- * 
- * Thanks to Hinnerk Ruemenapf - http://hinnerk.ruemenapf.de/ for bug reporting and fixing.
- */
+     * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) 
+     * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
+     * 
+     * Thanks to Hinnerk Ruemenapf - http://hinnerk.ruemenapf.de/ for bug reporting and fixing.
+     */
     jQuery.extend({
         /**
-* Returns get parameters.
-*
-* If the desired param does not exist, null will be returned
-*
-* @example value = $.getURLParam("paramName");
-*/ 
+         * Returns get parameters.
+         *
+         * If the desired param does not exist, null will be returned
+         *
+         * @example value = $.getURLParam("paramName");
+         */ 
         getURLParam: function(strParamName){
             var strReturn = "";
             var strHref = window.location.href;
@@ -90,7 +90,7 @@ $(function(){
         }else if(id == 'edit'){
             editWord(wordmapid);
         }else if(id=='close'){
-            closeReport(reportid);
+            closeReport(wordmapid, reportid);
         }else if(id=='open'){
             openReport(reportid);
         }else if(id == 'onhold'){
@@ -118,22 +118,30 @@ function deleteWord(wordmapid, reportid){
                 method: method,
                 reportid:reportid
             }
-        }).success(function(data){
+        }).done(function(data){
+           // alert(data);
             if(data == 'successfully deleted'){
+                //alert(data);
                 $('#status').remove();
-                $('#statbox').html('<p class="error word-style">Word has been deleted!</p>');
+                $('#statbox').html('<p class="success word-style">Word has been deleted!</p>');
                 $('#dvloader').hide(); 
-            }else if(data == 'hello world!'){
-                //alert(data);
-                $('#dvloader').hide();
-            }
-            else{
-                //alert(data);
+            }else if(data == 'ticket closed'){
+                // alert(data);
                 $('#status').remove();
-                $('#statbox').html('<p class="error word-style">Word already deleted!</p>');
+                $('#statbox').html('<p class="error word-style">You cannot perform this operation because the ticket is close.</p>');
                 $('#dvloader').hide();
+            }else if(data == 'error'){
+                alert('Blank word_status in database!');   
+            }else if (data == 'alreade deleted'){
+                $('#status').remove();
+                $('#statbox').html('<p class="error word-style">Word has already been deleted!</p>');
+                $('#dvloader').hide(); 
             }
     
+        }).error(function(){
+            $('#status').remove();
+            $('#statbox').html('<p class="error word-style">An error occured!</p>');
+            $('#dvloader').hide();
         });
     }    
     
@@ -142,8 +150,35 @@ function deleteWord(wordmapid, reportid){
 function editWord(){
     alert('hello world');
 }
-function closeReport(){
-    alert('hello world');
+function closeReport(wordmapid,reportid){
+    $('#dvloader').show(); 
+    var method = 'close'
+    
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost/dict/admin/include/ajax/reportCRUD.php',
+        data: {
+            method:method,
+            reportid:reportid,
+            wordmapid:wordmapid
+        }
+    }).done(function(data){
+        if(data == 'report closed'){
+            $('#status').remove();
+            $('#statbox').html('<p class="success word-style">This ticket is now closed.</p>');
+            $('#dvloader').hide(); 
+        }else if (data == 'already closed'){
+            $('#status').remove();
+            $('#statbox').html('<p class="error word-style">This ticket is already closed.</p>');
+            $('#dvloader').hide();  
+        }else{
+        // alert(data);
+        }
+    }).error(function(){
+        $('#status').remove();
+        $('#statbox').html('<p class="error word-style">An error occured!</p>');
+        $('#dvloader').hide();
+    });
 }
 function openReport(){
     alert('hello world');

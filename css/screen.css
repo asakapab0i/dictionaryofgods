@@ -516,31 +516,31 @@ h2 {font-size:2em;margin-bottom:0.25em;}
 .pagNumActive {
     color: #000;
     border:#060 1px solid; background-color: #ff9933; padding-left:3px; padding-right:3px;
-    padding: 5px;
+    padding: 2px;
 }
 .paginationNumbers a:link {
     color: #000;
     text-decoration: none;
     border:#999 1px solid; background-color:#F0F0F0; padding-left:3px; padding-right:3px;
-    padding: 5px;
+    
 }
 .paginationNumbers a:visited {
     color: #000;
     text-decoration: none;
     border:#999 1px solid; background-color:#F0F0F0; padding-left:3px; padding-right:3px;
-    padding: 5px;
+   
 }
 .paginationNumbers a:hover {
     color: #000;
     text-decoration: none;
     padding-left:3px; padding-right:3px;
-    padding: 5px;
+   
 }
 .paginationNumbers a:active {
     color: #000;
     text-decoration: none;
     border:#999 1px solid; background-color:#F0F0F0; padding-left:3px; padding-right:3px;
-    padding: 5px;
+  
 }
 
 /* WMD formatting style*/

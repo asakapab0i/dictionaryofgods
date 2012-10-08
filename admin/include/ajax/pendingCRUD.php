@@ -13,6 +13,8 @@ if (isset($_REQUEST['method']) && isset($_REQUEST['tempwordid'])) {
     if ($method == 'add word') {
 
         addWord($tempwordid);
+    } else if ($method == 'deny word') {
+        denyWord($tempwordid);
     }
 }
 
@@ -96,6 +98,21 @@ function addWord($tempwordid) {
         }
     } else {
         echo 'Word already added!';
+    }
+}
+
+function denyWord($tempwordid) {
+
+    $sql = mysql_query("SELECT status FROM tempword WHERE id = '$tempwordid'") or die(mysql_error());
+    while ($row = mysql_fetch_array($sql)) {
+        if ($row['status'] == 'Approved') {
+            echo 'word already added';
+        } else if ($row['status'] == 'Unapproved') {
+            mysql_query("UPDATE tempword SET status = 'Denied' WHERE id = '$tempwordid'") or die(mysql_error());
+            echo 'word denied';
+        } else if ($row['status'] == 'Denied') {
+            echo 'word already denied';
+        }
     }
 }
 

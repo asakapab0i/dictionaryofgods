@@ -160,15 +160,14 @@ function displayReports() {
 }
 
 function wordActionMenu() {
-    echo '<a id="edit" href="#" class="buttonAction">Edit</a>
-        <a id="delete" href="#" class="buttonAction">Delete</a><br/>';
+    echo '<input type="button" id="edit" class="buttonAction" value="Edit">
+        <input type="button" id="delete" class="buttonAction" value="delete"><br/>';
 }
 
 function reportActionMenu() {
-    echo '<a id="close" href="" class="buttonAction">Close</a>
-        <a id="open" href="" class="buttonAction">Open</a>
-        <a id="onhold" href="" class="buttonAction">On Hold</a>
-        </a><br/>';
+    echo '<input class="buttonAction" type="button" id="close" value="Close">
+        <input class="buttonAction" type="button" id="open" value="Open">
+        <input class="buttonAction" type="button" id="onhold" value="On Hold"><br/>';
 }
 
 function goBack() {

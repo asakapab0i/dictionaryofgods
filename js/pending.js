@@ -70,10 +70,10 @@ $(function(){
     })
 });
 
-
+// approve a vote
 $(function(){
     $('#do').click(function(){
-        if(confirm('Are you sure you want to add this word?')){
+        if(confirm('Are you sure you want to ADD this word?')){
             $('#dvloader').show(); 
             var tempwordid = $.getURLParam("pending");
             //alert(tempwordid);
@@ -100,6 +100,47 @@ $(function(){
                     $('#dvloader').hide(); 
                 }else{
                 //alert(data);
+                }
+            }).error(function(data){
+                alert('An error occured!'+ data);
+                $('#dvloader').hide(); 
+            });
+        }
+    });
+
+});
+//deny a word
+$(function(){
+    $('#dont').click(function(){
+        if(confirm('Are you sure you want to DENY this word?')){
+            $('#dvloader').show(); 
+            var tempwordid = $.getURLParam("pending");
+            //alert(tempwordid);
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost/dict/admin/include/ajax/pendingCRUD.php',
+                data: {
+                    method: 'deny word',
+                    tempwordid: tempwordid
+                
+                }
+            }).done(function(data){
+                if(data == 'word denied'){
+                    $('#stat').remove();
+                    $('#status').html('<p class="success word-style">Word has been rejected succesfully! <br/></p>');
+                    $('#dvloader').hide(); 
+                }else if(data == 'word already added'){
+                    $('#stat').remove();
+                    $('#status').html('<p class="error word-style">Cannot be denied! Because it\'s already been approved. <br/></p>');
+                    $('#dvloader').hide();
+                }else if(data == 'word already denied'){
+                    $('#stat').remove();
+                    $('#status').html('<p class="error word-style">Word has already been denied!<br/></p>');
+                    $('#dvloader').hide();
+                }else{
+                    $('#stat').remove();
+                    $('#status').html('<p class="error word-style">Something went wrong! <br/></p>');
+                    $('#dvloader').hide(); 
                 }
             }).error(function(data){
                 alert('An error occured!'+ data);

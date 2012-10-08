@@ -123,7 +123,7 @@ function displayPending() {
 }
 
 function wordActionMenu() {
-    echo '      <a href="#" id="do" class=buttonAction>Approve this!</a> <a href="#" id="dont" class=buttonAction>Don\'t Approve!</a> ';
+    echo ' <input type="button" id="do" class="buttonAction" value="Approve This!"> <input type="button" id="dont" class="buttonAction" value="Don\'t Approve">';
 }
 
 function goBack() {

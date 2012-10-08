@@ -163,3 +163,9 @@ $(function(){
         window.history.back();
     })
 });
+$(document).ready(function() 
+{ 
+    $("#myTable").tablesorter(); 
+} 
+); 
+    

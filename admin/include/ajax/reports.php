@@ -131,12 +131,12 @@ function displayReports() {
 
         echo '<h2>Pending Reports</h2>';
 
-        echo '<table style="border:1px solid black;" class="floatright">';
-        echo '<th scope="col">Ticket No</th>';
+        echo '<table id="myTable" style="border:1px solid black;" class="floatright tablesorter">';
+        echo '<thead></tr><th scope="col">Ticket No</th>';
         echo '<th scope="col">Type</th>';
         echo '<th scope="col">Status</th>';
         echo '<th scope="col">Date</th>';
-        echo '<th scope="col">Moderator</th>';
+        echo '<th scope="col">Moderator</th></tr></thead><tbody>';
 
         $count = 0;
         while ($row = mysql_fetch_array($report_query2)) {
@@ -154,7 +154,7 @@ function displayReports() {
             echo '</tr>';
             $count++;
         }
-        echo '</table>';
+        echo '</tbody></table>';
         echo '<span class="floatright">' . $paginationDisplay . '</span>';
     }
 }

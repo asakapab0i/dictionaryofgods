@@ -67,7 +67,9 @@ function displayPending() {
         }
         $limit = 'LIMIT ' . ($pn - 1) * $itemsPerPage . ',' . $itemsPerPage;
 
-        $sql2 = mysql_query("SELECT * FROM tempword ORDER BY date DESC $limit ");
+        $sql2 = mysql_query('SELECT *,DATE_FORMAT(date, "%d %W %M %Y") AS datew FROM tempword ORDER BY status ASC ' . $limit . ' ');
+
+        // mysql_query('SELECT *,DATE_FORMAT(date, "%d %W %M %Y") AS datew FROM report ORDER BY date DESC ' . $limit . ' ') 
 
         $paginationDisplay = "";
 
@@ -92,12 +94,12 @@ function displayPending() {
 
         echo '<h2>Pending Words</h2>';
 
-        echo '<table style="border:1px solid black;" class="floatright">';
-        echo '<th scope="col">Word</th>';
+        echo '<table id="myTable" style="border:1px solid black;" class="floatright tablesorter">';
+        echo '<thead><tr><th scope="col">Word</th>';
         echo '<th scope="col">Status</th>';
         echo '<th scope="col">Existing User</th>';
         echo '<th scope="col">Moderator</th>';
-        echo '<th scope="col">Date</th>';
+        echo '<th scope="col">Date</th><tr></thead><tbody>';
 
         $count = 0;
         while ($row = mysql_fetch_array($sql2)) {
@@ -111,10 +113,11 @@ function displayPending() {
             echo '<td>' . $row['status'] . '</td>';
             echo '<td>' . $row['existinguser'] . '</td>';
             echo '<td>' . $row['moderator'] . '</td>';
-            echo '<td>' . $row['date'] . '</td></tr>';
+            echo '<td>' . $row['datew'] . '</td>';
+            echo '</tr>';
             $count++;
         }
-        echo '</table>';
+        echo '</tbody></table>';
         echo '<span class="floatright">' . $paginationDisplay . '</span>';
     }
 }

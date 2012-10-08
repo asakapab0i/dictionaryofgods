@@ -35,6 +35,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['password']) && isset($_SESS
           <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection">
         <![endif]-->
         <script src="http://localhost/dict/js/jquery.js"></script>
+        <script src="http://localhost/dict/js/jquery.tablesorter.min.js"></script>
         <script src="http://localhost/dict/js/admin.js"></script>
     </head>
     <body>

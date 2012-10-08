@@ -96,7 +96,7 @@ $(function(){
                     $('#dvloader').hide(); 
                 }else if(data == 'Word already added!'){
                     $('#stat').remove();
-                    $('#status').html('<p class="success word-style">Word is already Added.</p>');
+                    $('#status').html('<p class="error word-style">You can\'t perform this operation because the world is already been approved.</p>');
                     $('#dvloader').hide(); 
                 }else{
                 //alert(data);
@@ -131,7 +131,7 @@ $(function(){
                     $('#dvloader').hide(); 
                 }else if(data == 'word already added'){
                     $('#stat').remove();
-                    $('#status').html('<p class="error word-style">Cannot be denied! Because it\'s already been approved. <br/></p>');
+                    $('#status').html('<p class="error word-style">Word cannot be denied! Because it\'s already been approved. <br/></p>');
                     $('#dvloader').hide();
                 }else if(data == 'word already denied'){
                     $('#stat').remove();

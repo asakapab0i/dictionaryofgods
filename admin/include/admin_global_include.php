@@ -7,7 +7,7 @@ session_start();
 
 
 function adminHeader() {
-
+    
     echo '<table class="header">
                 <tr>
                     <td>
@@ -45,7 +45,7 @@ function searchMenu() {
         echo '<p><span class="floatright alt">You are logged in as <span class="userbar-style word-style" id="userbar">Bryan Bojorque</span> | <a class="word-style" href="http://localhost/dict/admin/include/ajax/logout.php">Logout</a></span></p>';
     }
     echo '<form method = "get" action = "http://localhost/dict/define">';
-    echo '<input placeholder = "search here" id = "search" name = "term" type = "text" size = "40" class = "bigfatletters" value = "' . $term . '">
+    echo '<input placeholder = "search here" id = "search" name = "term" type = "text" size = "40" class="bigfatletters" value = "' . $term . '">
     <input class = "buttonMenu" id = "searchbutton" type = "submit" value = "search">';
     echo '</form>';
 }

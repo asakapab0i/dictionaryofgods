@@ -134,6 +134,8 @@ function mainFooter() {
             </p>
             </div>
             <hr>';
+    echo '<script src="http://localhost/dict/js/autoSuggest.js"></script>';
+    echo '<script src="http://localhost/dict/js/global.js"></script>';
     //failsafe
     //close the mysql connection after the page loads
     mysql_close();

@@ -14,6 +14,8 @@ if (isset($_REQUEST['reportid']) && isset($_REQUEST['wordmapid']) && isset($_REQ
         deleteWord($wordmapid, $reportid, $moderator);
     } else if ($method == 'close') {
         closeReport($reportid);
+    } else if ($method == 'open') {
+        openReport($reportid);
     }
 }
 
@@ -85,6 +87,19 @@ function closeReport($reportid) {
         } else if ($row['status'] == 'Open') {
             mysql_query("UPDATE report SET status = 'Closed' WHERE id = '$reportid' ");
             echo 'report closed';
+        }
+    }
+}
+
+function openReport($reportid) {
+    $sql = mysql_query("SELECT * FROM report WHERE id = '$reportid'");
+
+    while ($row = mysql_fetch_array($sql)) {
+        if ($row['status'] == 'Open') {
+            echo 'already open';
+        } else if ($row['status'] == 'Closed') {
+            mysql_query("Update report SET status = 'Open' WHERE id = '$reportid'");
+            echo 'report open';
         }
     }
 }

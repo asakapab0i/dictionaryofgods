@@ -161,7 +161,7 @@ function displayReports() {
 
 function wordActionMenu() {
     echo '<input type="button" id="edit" class="buttonAction" value="Edit">
-        <input type="button" id="delete" class="buttonAction" value="delete"><br/>';
+        <input type="button" id="delete" class="buttonAction" value="Delete"><br/>';
 }
 
 function reportActionMenu() {

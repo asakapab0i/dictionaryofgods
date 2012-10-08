@@ -516,7 +516,7 @@ h2 {font-size:2em;margin-bottom:0.25em;}
 .pagNumActive {
     color: #000;
     border:#060 1px solid; background-color: #ff9933; padding-left:3px; padding-right:3px;
-    padding: 2px;
+    
 }
 .paginationNumbers a:link {
     color: #000;

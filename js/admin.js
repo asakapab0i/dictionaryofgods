@@ -92,7 +92,7 @@ $(function(){
         }else if(id=='close'){
             closeReport(wordmapid, reportid);
         }else if(id=='open'){
-            openReport(reportid);
+            openReport(wordmapid, reportid);
         }else if(id == 'onhold'){
             onholdReport(reportid);
         }
@@ -119,7 +119,7 @@ function deleteWord(wordmapid, reportid){
                 reportid:reportid
             }
         }).done(function(data){
-           // alert(data);
+            // alert(data);
             if(data == 'successfully deleted'){
                 //alert(data);
                 $('#status').remove();
@@ -128,7 +128,7 @@ function deleteWord(wordmapid, reportid){
             }else if(data == 'ticket closed'){
                 // alert(data);
                 $('#status').remove();
-                $('#statbox').html('<p class="error word-style">You cannot perform this operation because the ticket is close.</p>');
+                $('#statbox').html('<p class="error word-style">You cannot perform this operation because the ticket is closed.</p>');
                 $('#dvloader').hide();
             }else if(data == 'error'){
                 alert('Blank word_status in database!');   
@@ -180,8 +180,36 @@ function closeReport(wordmapid,reportid){
         $('#dvloader').hide();
     });
 }
-function openReport(){
-    alert('hello world');
+function openReport(wordmapid, reportid){
+    $('#open').click(function(){
+        $('#dvloader').show(); 
+        var method = 'open';
+        
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost/dict/admin/include/ajax/reportCRUD.php',
+            data :{
+                method:method,
+                wordmapid:wordmapid,
+                reportid:reportid
+            }
+        }).done(function(data){
+            if(data == 'already open'){
+                $('#status').remove();
+                $('#statbox').html('<p class="error word-style">This ticket is already open.</p>');
+                $('#dvloader').hide();        
+            }else if(data == 'report open'){
+                $('#status').remove();
+                $('#statbox').html('<p class="success word-style">This ticket is successfully opened.</p>');
+                $('#dvloader').hide();   
+            }
+        }).error(function(){
+            $('#status').remove();
+            $('#statbox').html('<p class="error word-style">Something went wrong!</p>');
+            $('#dvloader').hide();   
+        });
+        
+    });
 }
 function onholdReport(){
     alert('hello world');

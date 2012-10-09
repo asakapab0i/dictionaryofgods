@@ -25,6 +25,38 @@ function displayPending() {
             echo '<h2 id="stat">Status: ' . $row['status'] . '</h2>';
             echo '</div>';
         }
+    } else if (isset($_REQUEST['display'])) {
+        $display = $_REQUEST['display'];
+
+
+        if ($display == 'new') {
+            $sql = mysql_query("SELECT *,DATE_FORMAT(date, '%d %W %M %Y') AS datew FROM tempword WHERE status = 'Unapproved' ORDER BY date DESC") or die(mysql_error());
+
+            echo '<h2>Pending Words</h2>';showNewWords();
+            echo '<table id="myTable" style="border:1px solid black;" class="floatright tablesorter">';
+            echo '<thead><tr><th scope="col">Word</th>';
+            echo '<th scope="col">Status</th>';
+            echo '<th scope="col">Existing User</th>';
+            echo '<th scope="col">Moderator</th>';
+            echo '<th scope="col">Date</th><tr></thead><tbody>';
+            $count = 0;
+            while ($row = mysql_fetch_array($sql)) {
+                echo "<tr  
+                    id='row" . $count . "' 
+                    onmouseover='over(" . $count . ")' 
+                    onmouseout='out(" . $count . ")' 
+                    onclick='clicked(" . $row['id'] . ") ' 
+                    style='cursor:pointer'>";
+                echo '<td>' . $row['word'] . '</td>';
+                echo '<td>' . $row['status'] . '</td>';
+                echo '<td>' . $row['existinguser'] . '</td>';
+                echo '<td>' . $row['moderator'] . '</td>';
+                echo '<td>' . $row['datew'] . '</td>';
+                echo '</tr>';
+                $count++;
+            }
+            echo '</tbody></table>';
+        }
     } else {
 
         $sql = mysql_query("SELECT * FROM tempword");
@@ -93,6 +125,7 @@ function displayPending() {
         }
 
         echo '<h2>Pending Words</h2>';
+        showNewWords();
 
         echo '<table id="myTable" style="border:1px solid black;" class="floatright tablesorter">';
         echo '<thead><tr><th scope="col">Word</th>';
@@ -128,6 +161,11 @@ function wordActionMenu() {
 
 function goBack() {
     echo '<a href="http://localhost/dict/admin/pending.php" class="buttonAction" id="back">Go back</a>';
+}
+
+function showNewWords() {
+    echo '<a href="http://localhost/dict/admin/pending.php" style="cursor:pointer" class="buttonAction" id="showOpen">Show All</a>';
+    echo ' <a href="http://localhost/dict/admin/pending.php?display=new" style="cursor:pointer" class="buttonAction" id="showOpen">Show New Words</a>';
 }
 
 ?>

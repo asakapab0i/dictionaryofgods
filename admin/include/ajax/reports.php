@@ -3,8 +3,39 @@
 include 'include/library/sessionChecker.php';
 
 function displayReports() {
+    if (isset($_REQUEST['display'])) {
+        $display = $_REQUEST['display'];
+        if (strtolower($display) == 'open') {
+            $sql = mysql_query("SELECT *,DATE_FORMAT(date, '%d %W %M %Y') AS datew FROM report WHERE status = 'Open' ORDER BY datew ASC") or die(mysql_error());
 
-    if (isset($_REQUEST['wid']) && isset($_REQUEST['rid'])) {
+            echo '<h2>Pending Reports</h2>';
+            showOpen();
+            echo '<table id="myTable" style="border:1px solid black;" class="floatright tablesorter">';
+            echo '<thead></tr><th scope="col">Ticket No</th>';
+            echo '<th scope="col">Type</th>';
+            echo '<th scope="col">Status</th>';
+            echo '<th scope="col">Date</th>';
+            echo '<th scope="col">Moderator</th></tr></thead><tbody>';
+
+            $count = 0;
+            while ($row = mysql_fetch_array($sql)) {
+                echo "<tr  
+                    id='row" . $count . "' 
+                    onmouseover='over(" . $count . ")' 
+                    onmouseout='out(" . $count . ")' 
+                    onclick='clicked(" . $row['wordmap_id'] . "," . $row['id'] . ") ' 
+                    style='cursor:pointer'>";
+                echo '<td>' . $row['id'] . '</td>';
+                echo '<td>' . $row['type'] . '</td>';
+                echo '<td>' . $row['status'] . '</td>';
+                echo '<td>' . $row['datew'] . '</td>';
+                echo '<td>' . $row['moderator'] . '</td>';
+                echo '</tr>';
+                $count++;
+            }
+            echo '</tbody></table>';
+        }
+    } else if(isset($_REQUEST['wid']) && isset($_REQUEST['rid'])) {
 
         $idx = $_REQUEST['wid'];
         $idy = $_REQUEST['rid'];
@@ -58,9 +89,6 @@ function displayReports() {
         }
         echo '</div>';
     } else {
-
-
-
 
         //mysql query on report
         $report_query = mysql_query("SELECT *,DATE_FORMAT(date, '%d %W %M %Y') AS datew FROM report") or die(mysql_error());
@@ -130,7 +158,7 @@ function displayReports() {
 
 
         echo '<h2>Pending Reports</h2>';
-
+        showOpen();
         echo '<table id="myTable" style="border:1px solid black;" class="floatright tablesorter">';
         echo '<thead></tr><th scope="col">Ticket No</th>';
         echo '<th scope="col">Type</th>';
@@ -172,6 +200,11 @@ function reportActionMenu() {
 
 function goBack() {
     echo '<a href="http://localhost/dict/admin/reports.php" class="buttonAction" id="back">Go back</a>';
+}
+
+function showOpen() {
+    echo '<a href="http://localhost/dict/admin/reports.php" style="cursor:pointer" class="buttonAction" id="showOpen">Show All</a>';
+    echo ' <a href="http://localhost/dict/admin/reports.php?display=open" style="cursor:pointer" class="buttonAction" id="showOpen">Show Open Tickets</a>';
 }
 
 ?>

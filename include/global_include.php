@@ -125,12 +125,12 @@ function mainFooter() {
         </div><br/>
         <hr/>
             <p class="alt word-style">
-            <a id="about" class="alt footer-style" href="http://localhost/dict/footer/about"> <img class="footerImages" src="http://localhost/dict/images/footer/about.png"/>About Us</a> 
-            <a id="api" class="alt footer-style" href="http://localhost/dict/footer/api"> <img class="footerImages" src="http://localhost/dict/images/footer/bricks.png"/>API</a> 
-            <a id="tech" class="alt footer-style" href="http://localhost/dict/footer/technology"> <img class="footerImages" src="http://localhost/dict/images/footer/tech.png"/>Technology</a> 
-            <a id="term" class="alt footer-style" href="http://localhost/dict/footer/term"> <img class="footerImages" src="http://localhost/dict/images/footer/term.png"/>Terms</a> 
-            <a id="data" class="alt footer-style" href="http://localhost/dict/footer/data"> <img class="footerImages" src="http://localhost/dict/images/footer/data.png"/>Data</a> 
-            <a id="ads" class="alt footer-style" href="http://localhost/dict/footer/ads"> <img class="footerImages" src="http://localhost/dict/images/footer/advertising.png"/>Advertise</a>
+            <a id="about" class="alt footer-style" href="http://localhost/dict/about"> <img class="footerImages" src="http://localhost/dict/images/footer/about.png"/>About Us</a> 
+            <a id="api" class="alt footer-style" href="http://localhost/dict/developer"> <img class="footerImages" src="http://localhost/dict/images/footer/bricks.png"/>API</a> 
+            <a id="tech" class="alt footer-style" href="http://localhost/dict/technology"> <img class="footerImages" src="http://localhost/dict/images/footer/tech.png"/>Technology</a> 
+            <a id="term" class="alt footer-style" href="http://localhost/dict/term"> <img class="footerImages" src="http://localhost/dict/images/footer/term.png"/>Terms</a> 
+            <a id="data" class="alt footer-style" href="http://localhost/dict/data"> <img class="footerImages" src="http://localhost/dict/images/footer/data.png"/>Data</a> 
+            <a id="ads" class="alt footer-style" href="http://localhost/dict/ads"> <img class="footerImages" src="http://localhost/dict/images/footer/advertising.png"/>Advertise</a>
             </p>
             </div>
             <hr>';

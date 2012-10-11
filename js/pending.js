@@ -96,7 +96,7 @@ $(function(){
                     $('#dvloader').hide(); 
                 }else if(data == 'Word already added!'){
                     $('#stat').remove();
-                    $('#status').html('<p class="error word-style">You can\'t perform this operation because the world is already been approved.</p>');
+                    $('#status').html('<p class="error word-style">You can\'t perform this operation because the word is already been approved.</p>');
                     $('#dvloader').hide(); 
                 }else{
                 //alert(data);

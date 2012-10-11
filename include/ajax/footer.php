@@ -19,7 +19,7 @@ function footerDisplay() {
         } else if ($ref == 'ads') {
             displayAds();
         } else {
-            header('Location: http://localhost/dict/');
+            //header('Location: http://localhost/dict/');
         }
     }
 }
@@ -52,7 +52,7 @@ function displayAbout() {
 }
 
 function founderInfoNikko() {
-    echo '<div class="kugmo" style="display:none;">';
+    echo '<div class="kugmo" style="display:block;">';
     echo '<p>Name: Nikko Gagno</p>';
     echo '<p>Position: Cheif Execute Officer/Chairman of the Board</p>';
     echo '<p>Qoute: The less the better.</p>';
@@ -60,7 +60,7 @@ function founderInfoNikko() {
 }
 
 function founderInfoBryan() {
-    echo '<div class="kugmo" style="display:none;">';
+    echo '<div class="kugmo" style="display:block;">';
     echo '<p>Name: Bryan Bojorque</p>';
     echo '<p>Position: Software Architect/</p>';
     echo '<p>Qoute: The less the better.</p>';
@@ -68,7 +68,7 @@ function founderInfoBryan() {
 }
 
 function founderInfoFidel() {
-    echo '<div class="kugmo" style="display:none;">';
+    echo '<div class="kugmo" style="display:block;">';
     echo '<p>Name: Fidel Gido</p>';
     echo '<p>Position: Data Analyst/Supervisor</p>';
     echo '<p>Qoute: “I am a fruitarian and I will only eat leaves picked by virgins in the moonlight - Steve Jobs ”</p>';
@@ -76,7 +76,7 @@ function founderInfoFidel() {
 }
 
 function founderInfoAls() {
-    echo '<div class="kugmo" style="display:none;">';
+    echo '<div class="kugmo" style="display:block;">';
     echo '<p>Name: Alnair Twister</p>';
     echo '<p>Position: Quality Assurance Manager</p>';
     echo '<p>Motto: The less the better.</p>';
@@ -84,7 +84,7 @@ function founderInfoAls() {
 }
 
 function founderInfoSam() {
-    echo '<div class="kugmo" style="display:none;">';
+    echo '<div class="kugmo" style="display:block;">';
     echo '<p>Name: Samsam Dulce</p>';
     echo '<p>Position: Research and Development</p>';
     echo '<p>Motto: The less the better.</p>';
@@ -92,7 +92,7 @@ function founderInfoSam() {
 }
 
 function founderInfoLei() {
-    echo '<div class="kugmo" style="display:none;">';
+    echo '<div class="kugmo" style="display:block;">';
     echo '<p>Name: Leigh Galindez</p>';
     echo '<p>Position: Project Manager</p>';
     echo '<p>Motto: The less the better.</p>';
